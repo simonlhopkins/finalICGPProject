@@ -25,7 +25,7 @@ public class twitterManagerScript2 : MonoBehaviour {
 
             string dataAsJson = File.ReadAllText(userJSONFilePath);
             GameUserJSON gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
-            JSONEnemyHelperGO.GetComponent<JSONEnemyHelper>().loadJSONDataToEnemies(gameUserJSON);
+            JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(gameUserJSON);
         }
 
 
@@ -104,6 +104,9 @@ public class twitterManagerScript2 : MonoBehaviour {
         gameUserJSON.users = _friendUsers;
         //write back to the file path the modified gameUserJSON
         File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(gameUserJSON));
-        JSONEnemyHelperGO.GetComponent<JSONEnemyHelper>().loadJSONDataToEnemies(gameUserJSON);
+
+
+
+        JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(gameUserJSON);
     }
 }

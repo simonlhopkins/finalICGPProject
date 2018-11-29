@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 578582859}
   - component: {fileID: 578582858}
   m_Layer: 0
-  m_Name: JSONEnemyHelper
+  m_Name: JSONEnemyHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

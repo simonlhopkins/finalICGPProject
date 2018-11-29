@@ -4,7 +4,7 @@ using UnityEngine;
 using JSONclasses;
 
 
-public class JSONEnemyHelper : MonoBehaviour {
+public class JSONEnemyHandler : MonoBehaviour {
 
     // Use this for initialization
 
@@ -33,7 +33,7 @@ public class JSONEnemyHelper : MonoBehaviour {
 
 
 
-            StartCoroutine(fetchImageFromURL(baseJSON.users.items[i].profile_image_url,
+            StartCoroutine(fetchImageFromURL(baseJSON.users.items[i].profile_image_url.Replace("_normal","_bigger"),
                                              baseJSON.users.items[i].screen_name));
 
         }
