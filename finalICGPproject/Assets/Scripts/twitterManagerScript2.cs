@@ -8,13 +8,26 @@ public class twitterManagerScript2 : MonoBehaviour {
 
 
     public string username;
+    public bool debugMode;
     private string userJSONFilePath;
     private FriendsIds friendsIds;
     private FriendUsers friendUsers;
+    public GameObject JSONEnemyHelperGO;
 	// Use this for initialization
 	void Start () {
+        
         userJSONFilePath = Path.Combine(Application.streamingAssetsPath, username + ".json");
-        updateJSONFile(username);
+
+        if(!debugMode){
+            updateJSONFile(username);
+        }
+        else{
+
+            string dataAsJson = File.ReadAllText(userJSONFilePath);
+            GameUserJSON gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
+            JSONEnemyHelperGO.GetComponent<JSONEnemyHelper>().loadJSONDataToEnemies(gameUserJSON);
+        }
+
 
     }
 	
@@ -91,5 +104,6 @@ public class twitterManagerScript2 : MonoBehaviour {
         gameUserJSON.users = _friendUsers;
         //write back to the file path the modified gameUserJSON
         File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(gameUserJSON));
+        JSONEnemyHelperGO.GetComponent<JSONEnemyHelper>().loadJSONDataToEnemies(gameUserJSON);
     }
 }
