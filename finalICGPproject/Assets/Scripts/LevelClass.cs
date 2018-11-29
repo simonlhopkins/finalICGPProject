@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class LevelClass : MonoBehaviour {
 
+    private List<WaveClass> waves;
+    private AudioClip levelSoundtrack;
+    private SpriteRenderer backgroundImg;
+
 	// Use this for initialization
 	void Start () {
 		

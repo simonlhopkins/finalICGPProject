@@ -17,7 +17,7 @@ public class WaveClass : MonoBehaviour {
         }
     }
 
-
+    public Difficulty difficulty;
 	// Use this for initialization
 	void Start () {
 		
