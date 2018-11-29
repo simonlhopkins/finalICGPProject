@@ -10,9 +10,13 @@ namespace JSONclasses
 
     [Serializable]
 
-    public class TwitterFollowerList
+    public class FriendsIds
     {
-        public List<TwitterUserType> users;
+        public List<string> ids;
+        public int next_cursor;
+        public string next_cursor_str;
+        public int previous_cursor;
+        public string previous_cursor_str;
 
 
     }

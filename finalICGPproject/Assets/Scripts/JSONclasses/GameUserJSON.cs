@@ -10,11 +10,10 @@ namespace JSONclasses
 
     [Serializable]
 
-    public class GameUserType
+    public class GameUserJSON
     {
-        public string username;
-        public TwitterFollowerList data;
-        public long lastLogin;
+        public FriendsIds ids;
+        public FriendUsers users;
 
 
     }

@@ -10,10 +10,9 @@ namespace JSONclasses
 
     [Serializable]
 
-    public class TwitterTweetUsersType
+    public class FriendUsers
     {
-        public List<GameUserType> tweetUsers;
-        public List<long> APICalls;
+        public List<TwitterUserType> items;
 
 
     }
