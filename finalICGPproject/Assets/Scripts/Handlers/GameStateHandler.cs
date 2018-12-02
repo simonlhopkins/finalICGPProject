@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameStateHandler : MonoBehaviour {
 
-
+    KeyboardHandler kh;
 
 	// Use this for initialization
 	void Start () {
-		
+        kh = new KeyboardHandler();
 	}
 	
 	// Update is called once per frame
