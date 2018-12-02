@@ -33,11 +33,21 @@ public class EnemyBaseClass : MonoBehaviour {
     }
 
 	void Start () {
-		
+        resizeTextureOnLoad();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
 		
 	}
+
+
+    void resizeTextureOnLoad(){
+        print(texture.width);
+        TextureScale.Bilinear(texture, 500, 500);
+        Sprite newSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        GetComponent<SpriteRenderer>().sprite = newSprite;
+    }
 }

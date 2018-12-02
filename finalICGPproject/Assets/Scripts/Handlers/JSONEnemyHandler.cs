@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using JSONclasses;
 
-
 public class JSONEnemyHandler : MonoBehaviour {
 
     // Use this for initialization
@@ -33,7 +32,7 @@ public class JSONEnemyHandler : MonoBehaviour {
 
 
 
-            StartCoroutine(fetchImageFromURL(baseJSON.users.items[i].profile_image_url.Replace("_normal","_bigger"),
+            StartCoroutine(fetchImageFromURL(baseJSON.users.items[i].profile_image_url.Replace("_normal",""),
                                              baseJSON.users.items[i].screen_name));
 
         }
@@ -46,14 +45,15 @@ public class JSONEnemyHandler : MonoBehaviour {
         using (WWW www = new WWW(url))
         {
             yield return www;
-            Texture2D tex = new Texture2D(4, 4, TextureFormat.DXT1, false);
+            Texture2D tex = new Texture2D(4, 4, TextureFormat.ARGB32, false);
             www.LoadImageIntoTexture(tex);
             GameObject newEnemyGO = Instantiate(enemy);
+
+
+            //Texture2D scaledTexture = TextureScaler.scaled(tex, 100, 100);
             newEnemyGO.GetComponent<EnemyBaseClass>().Texture = tex;
             newEnemyGO.GetComponent<EnemyBaseClass>().TextToKill = textToKill;
 
-            Sprite newSprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
-            newEnemyGO.GetComponent<SpriteRenderer>().sprite = newSprite;
             allEnemies.Add(newEnemyGO);
         }
     }
