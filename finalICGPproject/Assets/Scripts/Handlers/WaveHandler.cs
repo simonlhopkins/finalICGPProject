@@ -27,7 +27,7 @@ public class WaveHandler : MonoBehaviour {
         for (int i = 0; i < 10; i++){
             newWave.EnemiesInWave.Add(jSONEnemyHandler.GetComponent<JSONEnemyHandler>().allEnemies[i]);
         }
-        gameStateHandler.
+        //gameStateHandler.
         //newWave.EnemiesInWave 
 
         
