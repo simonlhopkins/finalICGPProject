@@ -24,23 +24,18 @@ public class JSONEnemyHandler : MonoBehaviour {
         
         for (int i = 0; i < baseJSON.users.items.Count; i++){
             
-            //start a coroutine to load in the image as a texture from the WWW file
-            //make a base texture that gets set to the new enemy
-
-
-            //instantiate enemy
 
 
 
             StartCoroutine(fetchImageFromURL(baseJSON.users.items[i].profile_image_url.Replace("_normal",""),
-                                             baseJSON.users.items[i].screen_name));
+                                             baseJSON.users.items[i]));
 
         }
         
     }
 
 
-    IEnumerator fetchImageFromURL(string url, string textToKill)
+    IEnumerator fetchImageFromURL(string url, TwitterUserType userInfo)
     {
         using (WWW www = new WWW(url))
         {
@@ -48,12 +43,11 @@ public class JSONEnemyHandler : MonoBehaviour {
             Texture2D tex = new Texture2D(4, 4, TextureFormat.ARGB32, false);
             www.LoadImageIntoTexture(tex);
             GameObject newEnemyGO = Instantiate(enemy);
-
+            newEnemyGO.SetActive(false);
 
             //Texture2D scaledTexture = TextureScaler.scaled(tex, 100, 100);
             newEnemyGO.GetComponent<EnemyBaseClass>().Texture = tex;
-            newEnemyGO.GetComponent<EnemyBaseClass>().TextToKill = textToKill;
-
+            newEnemyGO.GetComponent<EnemyBaseClass>().setStringVariables(userInfo);
             allEnemies.Add(newEnemyGO);
         }
     }
