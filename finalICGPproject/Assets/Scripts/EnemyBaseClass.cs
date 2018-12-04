@@ -43,7 +43,18 @@ public class EnemyBaseClass : MonoBehaviour {
         }
     }
 
+<<<<<<< HEAD
     //Initialization
+=======
+    public string username;
+    public string screen_name;
+    public string description;
+    public string location;
+    public int followers_count;
+    public int friends_count;
+    public int favourites_count;
+
+>>>>>>> f7dc42adca87dab1c82c0076bac95c2c196cdd04
 	void Start () {
         resizeTextureOnLoad();
         //TextOnScreen = transform.gameObject.AddComponent<Text>();
@@ -65,7 +76,7 @@ public class EnemyBaseClass : MonoBehaviour {
     }
 
     public void setStringVariables(TwitterUserType user){
-        name = user.name;
+        username = user.name;
         screen_name = user.screen_name;
         description = user.description;
         location = user.location;

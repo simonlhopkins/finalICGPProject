@@ -16,7 +16,7 @@ public class JSONEnemyHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
 
 
@@ -26,29 +26,31 @@ public class JSONEnemyHandler : MonoBehaviour {
             
 
 
-
+            GameObject newEnemyGO = Instantiate(enemy);
+            newEnemyGO.SetActive(false);
             StartCoroutine(fetchImageFromURL(baseJSON.users.items[i].profile_image_url.Replace("_normal",""),
-                                             baseJSON.users.items[i]));
+                                             baseJSON.users.items[i], newEnemyGO));
+            allEnemies.Add(newEnemyGO);
 
         }
-        
+
+
     }
 
 
-    IEnumerator fetchImageFromURL(string url, TwitterUserType userInfo)
+    IEnumerator fetchImageFromURL(string url, TwitterUserType userInfo, GameObject targetEnemy)
     {
         using (WWW www = new WWW(url))
         {
             yield return www;
             Texture2D tex = new Texture2D(4, 4, TextureFormat.ARGB32, false);
             www.LoadImageIntoTexture(tex);
-            GameObject newEnemyGO = Instantiate(enemy);
-            newEnemyGO.SetActive(false);
+
 
             //Texture2D scaledTexture = TextureScaler.scaled(tex, 100, 100);
-            newEnemyGO.GetComponent<EnemyBaseClass>().Texture = tex;
-            newEnemyGO.GetComponent<EnemyBaseClass>().setStringVariables(userInfo);
-            allEnemies.Add(newEnemyGO);
+            targetEnemy.GetComponent<EnemyBaseClass>().Texture = tex;
+            targetEnemy.GetComponent<EnemyBaseClass>().setStringVariables(userInfo);
+
         }
     }
 }

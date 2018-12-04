@@ -157,25 +157,14 @@ Prefab:
       propertyPath: JSONEnemyHelperGO
       value: 
       objectReference: {fileID: 1854417201}
+    - target: {fileID: 114190349708137140, guid: b9d543e7395d1420193e084ddea39d73,
+        type: 2}
+      propertyPath: jSONEnemyHandler
+      value: 
+      objectReference: {fileID: 1854417201}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9d543e7395d1420193e084ddea39d73, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1246557514 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1952645189136428, guid: b9d543e7395d1420193e084ddea39d73,
-    type: 2}
-  m_PrefabInternal: {fileID: 1246557513}
---- !u!114 &1246557515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1246557514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb9bf51ced914b849113fda897d72c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1427647955
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,45 +242,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1854417201
+--- !u!1001 &1500295819
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4372208485307574, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.6900814
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372208485307574, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.03768
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372208485307574, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.6492208
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372208485307574, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372208485307574, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372208485307574, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372208485307574, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372208485307574, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1 &1854417201 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1854417203}
-  - component: {fileID: 1854417202}
-  m_Layer: 0
-  m_Name: JSONEnemyHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1854417202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1854417201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3323ddda82f774026bb10b374e288adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allEnemies: []
-  enemy: {fileID: 1649163542941300, guid: 5532011e898e34b05b84657d80c131ad, type: 2}
---- !u!4 &1854417203
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1854417201}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.6900814, y: 2.03768, z: 0.6492208}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_CorrespondingSourceObject: {fileID: 1464325215612296, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1500295819}

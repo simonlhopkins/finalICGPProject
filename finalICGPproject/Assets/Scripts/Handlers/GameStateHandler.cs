@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameStateHandler : MonoBehaviour {
 
-    KeyboardHandler kh;
+    public KeyboardHandler kh;
     public EnemyBaseClass currentEnemy;
-    LevelClass currentLevel;
-    WaveClass currentWave;
-    Player player; 
+    public LevelClass currentLevel;
+    public WaveClass currentWave;
+    public Player player; 
 
     
 

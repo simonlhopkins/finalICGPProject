@@ -2,20 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveClass : MonoBehaviour {
+public class WaveClass {
 
 
-    private List<EnemyBaseClass> enemiesInWave;
-    public List<EnemyBaseClass> EnemiesInWave{
-        get
-        {
-            return enemiesInWave;
-        }
-        set
-        {
-            enemiesInWave = value;
-        }
-    }
+    public List<GameObject> EnemiesInWave{get; set;}
 
     public Difficulty difficulty;
 	// Use this for initialization
