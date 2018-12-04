@@ -39,7 +39,6 @@ public class KeyboardHandler : MonoBehaviour {
         {
             string _input = Input.inputString;
             int _length = currentLettersTyped.Length;
-
             switch (_input)
             {
                 case "\b": //backspace
@@ -48,6 +47,8 @@ public class KeyboardHandler : MonoBehaviour {
                     lastLetterTyped = currentLettersTyped.ToString()[_length - 1];
                     break;
                 case "\n": //return key
+                    break;
+                case "":
                     break;
                 default:
                     currentLettersTyped.Append(_input);

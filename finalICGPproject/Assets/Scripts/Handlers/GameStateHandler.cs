@@ -7,6 +7,7 @@ public class GameStateHandler : MonoBehaviour {
     public KeyboardHandler kh;
     public GameObject currentEnemy;
     public LevelClass currentLevel;
+    [SerializeField]
     public WaveClass currentWave;
     public GameObject player; 
 

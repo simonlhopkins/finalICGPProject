@@ -43,18 +43,9 @@ public class EnemyBaseClass : MonoBehaviour {
         }
     }
 
-<<<<<<< HEAD
     //Initialization
-=======
-    public string username;
-    public string screen_name;
-    public string description;
-    public string location;
-    public int followers_count;
-    public int friends_count;
-    public int favourites_count;
 
->>>>>>> f7dc42adca87dab1c82c0076bac95c2c196cdd04
+
 	void Start () {
         resizeTextureOnLoad();
         //TextOnScreen = transform.gameObject.AddComponent<Text>();
