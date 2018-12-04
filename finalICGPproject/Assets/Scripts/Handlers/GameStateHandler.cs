@@ -5,10 +5,10 @@ using UnityEngine;
 public class GameStateHandler : MonoBehaviour {
 
     public KeyboardHandler kh;
-    public EnemyBaseClass currentEnemy;
+    public GameObject currentEnemy;
     public LevelClass currentLevel;
     public WaveClass currentWave;
-    public Player player; 
+    public GameObject player; 
 
     
 
