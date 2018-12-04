@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private int health;
+    public readonly SpriteRenderer playerPhoto;
 
     public int DealDamage(int damage)
     {
@@ -15,8 +16,6 @@ public class Player : MonoBehaviour
     {
         return health;
     }
-
-    public SpriteRenderer playerPhoto;
 
     // Use this for initialization
     void Start()
