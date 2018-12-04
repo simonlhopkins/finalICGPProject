@@ -34,8 +34,7 @@ public class JSONEnemyHandler : MonoBehaviour {
 
         }
 
-        print(allEnemies.Count);
-        
+
     }
 
 
