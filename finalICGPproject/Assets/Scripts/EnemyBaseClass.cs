@@ -33,7 +33,7 @@ public class EnemyBaseClass : MonoBehaviour {
         }
     }
 
-    public string name;
+    public string username;
     public string screen_name;
     public string description;
     public string location;
@@ -61,7 +61,7 @@ public class EnemyBaseClass : MonoBehaviour {
     }
 
     public void setStringVariables(TwitterUserType user){
-        name = user.name;
+        username = user.name;
         screen_name = user.screen_name;
         description = user.description;
         location = user.location;
