@@ -5,6 +5,10 @@ using UnityEngine;
 public class GameStateHandler : MonoBehaviour {
 
     KeyboardHandler kh;
+    EnemyBaseClass currentEnemy;
+    LevelClass currentLevel;
+    WaveClass currentWave;
+    Player player; 
 
 	// Use this for initialization
 	void Start () {
