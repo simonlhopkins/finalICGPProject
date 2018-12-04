@@ -6,7 +6,16 @@ using JSONclasses;
 
 public class EnemyBaseClass : MonoBehaviour {
 
-    // Use this for initialization
+    public string username;
+    public string screen_name;
+    public string description;
+    public string location;
+    public int followers_count;
+    public int friends_count;
+    public int favourites_count;
+
+    public Text TextOnScreen;
+
     [SerializeField]
     private string textToKill;
 
@@ -34,22 +43,16 @@ public class EnemyBaseClass : MonoBehaviour {
         }
     }
 
-    public string name;
-    public string screen_name;
-    public string description;
-    public string location;
-    public int followers_count;
-    public int friends_count;
-    public int favourites_count;
-
+    //Initialization
 	void Start () {
         resizeTextureOnLoad();
-
-	}
+        //TextOnScreen = transform.gameObject.AddComponent<Text>();
+        TextOnScreen.text = "Test123";
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        
+        TextOnScreen.transform.position = this.transform.position + Vector3.up * 100;
 		
 	}
 
