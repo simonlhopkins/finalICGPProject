@@ -14,7 +14,7 @@ public class EnemyBaseClass : MonoBehaviour {
     public int friends_count;
     public int favourites_count;
 
-    public Text TextOnScreen;
+
 
     [SerializeField]
     private string textToKill;
@@ -73,4 +73,7 @@ public class EnemyBaseClass : MonoBehaviour {
         friends_count = user.friends_count;
         favourites_count = user.favourites_count;
     }
+}
+
+
 }

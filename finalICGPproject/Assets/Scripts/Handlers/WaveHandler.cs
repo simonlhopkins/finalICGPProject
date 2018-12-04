@@ -17,6 +17,7 @@ public class WaveHandler : MonoBehaviour {
 	void Update () {
         if(Input.GetKeyDown(KeyCode.Space)){
             spawnNewWave();
+            //print(gameStateHandler.currentWave.EnemiesInWave.Count);
         }
 	}
 
@@ -28,7 +29,8 @@ public class WaveHandler : MonoBehaviour {
             newWave.EnemiesInWave.Add(jSONEnemyHandler.GetComponent<JSONEnemyHandler>().allEnemies[i]);
         }
 
-        //gameStateHandler.
+        gameStateHandler.currentWave = newWave;
+        gameStateHandler.currentEnemy = newWave.EnemiesInWave[0];
         //newWave.EnemiesInWave 
 
         
