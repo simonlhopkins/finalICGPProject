@@ -101,6 +101,7 @@ public class twitterManagerScript2 : MonoBehaviour {
         string dataAsJson = File.ReadAllText(userJSONFilePath);
         GameUserJSON gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
         gameUserJSON.ids = _friendsIds;
+
         gameUserJSON.users = _friendUsers;
         //write back to the file path the modified gameUserJSON
         File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(gameUserJSON));
