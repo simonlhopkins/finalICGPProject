@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4381816012394030}
   - component: {fileID: 114425898004957270}
-  - component: {fileID: 114820443646063400}
   - component: {fileID: 114089672728262032}
+  - component: {fileID: 114500988675100182}
   m_Layer: 0
   m_Name: gameManager
   m_TagString: Untagged
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907f9466537f747479f237caa9b2a15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114820443646063400
+--- !u!114 &114500988675100182
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,8 +72,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1952645189136428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3323ddda82f774026bb10b374e288adf, type: 3}
+  m_Script: {fileID: 11500000, guid: bd581572173eb4636917d4a845a92259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allEnemies: []
-  enemy: {fileID: 0}
+  username: slimon_slopkins
+  debugMode: 1
+  JSONEnemyHelperGO: {fileID: 0}
