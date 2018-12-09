@@ -14,7 +14,7 @@ public class EnemyBaseClass : MonoBehaviour {
     public int friends_count;
     public int favourites_count;
 
-
+    public Text TextOnScreen;
 
     [SerializeField]
     private string textToKill;
@@ -44,16 +44,17 @@ public class EnemyBaseClass : MonoBehaviour {
     }
 
     //Initialization
-	void Start () {
+	void Start () 
+    {
         resizeTextureOnLoad();
         //TextOnScreen = transform.gameObject.AddComponent<Text>();
         TextOnScreen.text = "Test123";
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
         TextOnScreen.transform.position = this.transform.position + Vector3.up * 100;
-		
 	}
 
 
@@ -76,4 +77,4 @@ public class EnemyBaseClass : MonoBehaviour {
 }
 
 
-}
+
