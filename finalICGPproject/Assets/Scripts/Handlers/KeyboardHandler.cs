@@ -15,7 +15,6 @@ public class KeyboardHandler : MonoBehaviour {
         {
             return CurrentLettersTyped.ToString();
         }
-       
     }
 
     void ClearCurrentLettersTyped()
@@ -24,12 +23,14 @@ public class KeyboardHandler : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start () 
+    {
         currentLettersTyped = new StringBuilder(50);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
         UpdateCurrentLettersTyped();
     }
 
@@ -46,13 +47,17 @@ public class KeyboardHandler : MonoBehaviour {
                     _length = currentLettersTyped.Length;
                     lastLetterTyped = currentLettersTyped.ToString()[_length - 1];
                     break;
+
                 case "\n": //return key
                     break;
+
                 case "":
                     break;
+
                 default:
                     currentLettersTyped.Append(_input);
                     lastLetterTyped = _input.ToCharArray()[0];
+                    print("CurrentLettersTyped: " + currentLettersTyped.ToString());
                     break;
             }
         }
