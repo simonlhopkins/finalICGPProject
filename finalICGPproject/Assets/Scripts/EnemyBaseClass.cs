@@ -7,6 +7,7 @@ using JSONclasses;
 public class EnemyBaseClass : MonoBehaviour {
 
     #region Public fields
+
     public string username;
     public string screen_name;
     public string description;
@@ -16,17 +17,24 @@ public class EnemyBaseClass : MonoBehaviour {
     public int favourites_count;
     public bool isFocused { get; set; }
 
+    #endregion
+
+    #region Public components
+
     public Text TextOnScreen;
+
     #endregion
 
     #region Private fields
-    private string textToKill_NotTyped = string.Empty;
-    private string textToKill_Typed = string.Empty;
+
+    private string textToKill_Typed = "Test2";
+    private string textToKill_NotTyped = "Test1";
+
     #endregion
 
 
     [SerializeField]
-    private string textToKill = "Testing 1 2 3...";
+    private string textToKill;
     public string TextToKill{
         get
         {
@@ -69,7 +77,7 @@ public class EnemyBaseClass : MonoBehaviour {
     {
         TextOnScreen.transform.position = this.transform.position + Vector3.up * 100;
         //TextOnScreen.supportRichText = true;
-        TextOnScreen.text = TextToKill;
+        TextOnScreen.text = StyleText(textToKill_Typed, textToKill_NotTyped);
 	}
 
 
@@ -125,7 +133,7 @@ public class EnemyBaseClass : MonoBehaviour {
     /// <param name="notTyped">Not typed.</param>
     private string StyleText(string typed, string notTyped)
     {
-        return "<b>" + typed + "</b>" + notTyped;
+        return "<color=green><b>" + typed + "</b></color>" + notTyped;
     }
 
     /// <summary>
