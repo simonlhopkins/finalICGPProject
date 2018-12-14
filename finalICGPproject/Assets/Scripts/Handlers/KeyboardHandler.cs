@@ -9,15 +9,23 @@ public class KeyboardHandler : MonoBehaviour {
     private StringBuilder currentLettersTyped;
     private char lastLetterTyped;
 
+    public string LastLetterTyped
+    {
+        get
+        {
+            return lastLetterTyped.ToString();
+        }
+    }
+
     public string CurrentLettersTyped
     {
         get
         {
-            return CurrentLettersTyped.ToString();
+            return currentLettersTyped.ToString();
         }
     }
 
-    void ClearCurrentLettersTyped()
+    public void ClearCurrentLettersTyped()
     {
         currentLettersTyped.Remove(0, currentLettersTyped.Length);
     }
@@ -25,7 +33,7 @@ public class KeyboardHandler : MonoBehaviour {
     // Use this for initialization
     void Start () 
     {
-        currentLettersTyped = new StringBuilder(50);
+        currentLettersTyped = new StringBuilder(128);
 	}
 	
 	// Update is called once per frame

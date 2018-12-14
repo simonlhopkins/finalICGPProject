@@ -15,7 +15,8 @@ public class EnemyBaseClass : MonoBehaviour {
     public int followers_count;
     public int friends_count;
     public int favourites_count;
-    public bool isFocused { get; set; }
+    public bool IsFocused { get; set; }
+    
 
     #endregion
 
@@ -32,6 +33,7 @@ public class EnemyBaseClass : MonoBehaviour {
 
     #endregion
 
+    
 
     [SerializeField]
     private string textToKill;
@@ -43,6 +45,27 @@ public class EnemyBaseClass : MonoBehaviour {
         set
         {
             textToKill = value;
+        }
+    }
+
+    /// <summary>
+    /// Updates the <c>textToKill_Typed</c> and <c>textToKill_NotTyped</c>
+    /// according to the the <c>typedText</c> 
+    /// </summary>
+    /// <param name="typedText">The typed text that needs to be checked against the <c>textToKill</c></param>
+    /// <returns></returns>
+    public bool UpdateTextToKillTypedText(string typedText)
+    {
+        if(textToKill.StartsWith(typedText, false, null))
+        {
+            textToKill_Typed = typedText;
+            textToKill_NotTyped = textToKill.Substring(typedText.Length - 1);
+            return true;
+        } else
+        {
+            textToKill_Typed = "";
+            textToKill_NotTyped = textToKill;
+            return false;
         }
     }
 
@@ -82,7 +105,7 @@ public class EnemyBaseClass : MonoBehaviour {
 
 
     /// <summary>
-    /// Updates the text kill show progress on screen. Does not take backspace into account. 
+    /// Updates the text to kill to show progress on screen. Does not take backspace into account. 
     /// </summary>
     /// <returns><c>true</c>, if the char typed was next in <c>textToKill_NotTyped</c>, <c>false</c> otherwise.</returns>
     /// <param name="c">C.</param>
