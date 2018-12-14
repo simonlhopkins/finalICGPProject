@@ -98,7 +98,7 @@ public class EnemyBaseClass : MonoBehaviour {
 	// Update is called once per frame
 	void Update() 
     {
-        TextOnScreen.transform.position = this.transform.position + Vector3.up * 100;
+        TextOnScreen.transform.position = this.transform.position + Vector3.up * 35;
         //TextOnScreen.supportRichText = true;
         TextOnScreen.text = StyleText(textToKill_Typed, textToKill_NotTyped);
 	}

@@ -28,7 +28,7 @@ public class GameStateHandler : MonoBehaviour {
         var enemy = currentEnemy.GetComponent<EnemyBaseClass>() as EnemyBaseClass;
         if(Input.anyKeyDown)
         {
-            //TODO: does not account for backspace. Will just try to add the previous letter again
+            //TODO: May account for backspace. Check to be certain. 
             if(!enemy.UpdateTextToKillTypedText(kh.CurrentLettersTyped))
             {
                 kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill

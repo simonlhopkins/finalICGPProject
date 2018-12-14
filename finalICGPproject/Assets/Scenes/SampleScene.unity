@@ -488,12 +488,12 @@ Prefab:
     - target: {fileID: 224105699347262532, guid: 5532011e898e34b05b84657d80c131ad,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 222
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 224105699347262532, guid: 5532011e898e34b05b84657d80c131ad,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 87
+      value: 92
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5532011e898e34b05b84657d80c131ad, type: 2}
@@ -635,7 +635,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
