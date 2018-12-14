@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class KeyboardHandler : MonoBehaviour {
 
-    private StringBuilder currentLettersTyped;
+    private StringBuilder currentLettersTyped = new StringBuilder(128);
     private char lastLetterTyped;
 
     public string LastLetterTyped
@@ -33,7 +33,7 @@ public class KeyboardHandler : MonoBehaviour {
     // Use this for initialization
     void Start () 
     {
-        currentLettersTyped = new StringBuilder(128);
+        
 	}
 	
 	// Update is called once per frame
@@ -54,6 +54,7 @@ public class KeyboardHandler : MonoBehaviour {
                     currentLettersTyped.Remove(_length - 1, 1);
                     _length = currentLettersTyped.Length;
                     lastLetterTyped = currentLettersTyped.ToString()[_length - 1];
+                    print("CurrentLettersTyped: " + currentLettersTyped.ToString());
                     break;
 
                 case "\n": //return key

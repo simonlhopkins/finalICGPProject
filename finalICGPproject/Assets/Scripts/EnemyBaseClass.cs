@@ -28,8 +28,8 @@ public class EnemyBaseClass : MonoBehaviour {
 
     #region Private fields
 
-    private string textToKill_Typed = "Test2";
-    private string textToKill_NotTyped = "Test1";
+    private string textToKill_Typed = "";
+    private string textToKill_NotTyped = "";
 
     #endregion
 
@@ -88,9 +88,13 @@ public class EnemyBaseClass : MonoBehaviour {
     {
         texture = Texture2D.blackTexture;
         resizeTextureOnLoad();
+
         TextOnScreen.supportRichText = true;
-        TextOnScreen.text = TextToKill;
+        TextOnScreen.text = textToKill;
+        textToKill_NotTyped = textToKill;
+
         print("Start() has run...");
+        print("TextOnScreen = " + TextOnScreen.text);
 
     }
 
@@ -99,7 +103,6 @@ public class EnemyBaseClass : MonoBehaviour {
 	void Update() 
     {
         TextOnScreen.transform.position = this.transform.position + Vector3.up * 35;
-        //TextOnScreen.supportRichText = true;
         TextOnScreen.text = StyleText(textToKill_Typed, textToKill_NotTyped);
 	}
 
@@ -114,7 +117,7 @@ public class EnemyBaseClass : MonoBehaviour {
         if (textToKill_NotTyped.StartsWith(c, false, null)) //compare text case-insensitive
         {
             textToKill_Typed += textToKill_NotTyped.Remove(0);
-            textToKill = StyleText(textToKill_Typed, textToKill_NotTyped);
+            //textToKill = StyleText(textToKill_Typed, textToKill_NotTyped);
             return true;
         }
         return false;
@@ -156,7 +159,7 @@ public class EnemyBaseClass : MonoBehaviour {
     /// <param name="notTyped">Not typed.</param>
     private string StyleText(string typed, string notTyped)
     {
-        return "<color=green><b>" + typed + "</b></color>" + notTyped;
+        return "<color=green><b>" + typed + "</b></color><color=red>" + notTyped + "</color>";
     }
 
     /// <summary>
