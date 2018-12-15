@@ -14,15 +14,16 @@ public class JSONEnemyHandler : MonoBehaviour {
 
     void Start () {
         gameManager = GameObject.FindWithTag("gameManager");
+
     }
 
     // Update is called once per frame
     void Update () {
-        if (gameManager.GetComponent<GameStateHandler>().player.followerCount ==  0)
+        if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == 0)
         {
             return;
         }
-        if (gameManager.GetComponent<TwitterManagerScript>().currentGameUserJSON.ids.ids.Count == imagesLoaded)
+        if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == imagesLoaded)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("simonTestScene");
         }

@@ -32,7 +32,7 @@ public class PlayButtonScript : MonoBehaviour {
                 gameManager.GetComponent<TwitterManagerScript>().onUserSelected(_userName);
                 return;
             }
-            if (gameManager.GetComponent<GameStateHandler>().player.userName == _userName)
+            if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().userName == _userName)
             {
 
                 gameManager.GetComponent<LogHandler>().writeToLog("user already generated", Color.red);

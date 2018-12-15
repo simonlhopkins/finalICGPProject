@@ -4,7 +4,7 @@ using UnityEngine;
 using JSONclasses;
 
 [System.Serializable]
-public class Player
+public class Player : MonoBehaviour
 {
     [SerializeField]
     private int health;
@@ -16,6 +16,18 @@ public class Player
     public string userName;
 
 
+    public static Player i;
+
+    void Awake()
+    {
+        if (!i)
+        {
+            i = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
 
     public int DealDamage(int damage)
     {

@@ -11,7 +11,7 @@ public class GameStateHandler : MonoBehaviour {
     [SerializeField]
     public WaveClass currentWave;
     [SerializeField]
-    public Player player;
+    public GameObject player;
 
     public static GameStateHandler i;
 
@@ -28,13 +28,20 @@ public class GameStateHandler : MonoBehaviour {
 
     void Start () {
         kh = GetComponent<KeyboardHandler>();
-	}
+
+
+    }
 	
 	// Update is called once per frame
+
+    public bool debugArrayPopulated = false;
 	void Update () {
 
 
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
+            return;
+        }
+        if (!debugArrayPopulated) {
             return;
         }
         if (Input.anyKeyDown)

@@ -32,7 +32,7 @@ public class TwitterManagerScript : MonoBehaviour {
     }
 
     public void onUserSelected(string _userName) {
-        logHandler.writeToLog(_userName + " is being loaded up...", Color.blue);
+        JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON); logHandler.writeToLog(_userName + " is being loaded up...", Color.blue);
         userJSONFilePath = Path.Combine(Application.streamingAssetsPath, _userName + ".json");
 
         //if we are not in debug mode, check if there is a JSON file already created, default to
@@ -140,13 +140,10 @@ public class TwitterManagerScript : MonoBehaviour {
 
         string dataAsJson = File.ReadAllText(_userJSONFilePath);
         GameUserJSON _gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
-        Player newPlayer = new Player {
-            userName = username,
-            gameUserJSON = _gameUserJSON,
-            followerCount = _gameUserJSON.ids.ids.Count
-        };
-
-        GetComponent<GameStateHandler>().player = newPlayer;
+        Player playerData = GetComponent<GameStateHandler>().player.GetComponent<Player>();
+        playerData.userName = username;
+        playerData.gameUserJSON = _gameUserJSON;
+        playerData.followerCount = _gameUserJSON.ids.ids.Count;
 
         File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(_gameUserJSON));
         return _gameUserJSON;
