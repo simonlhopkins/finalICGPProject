@@ -91,6 +91,8 @@ public class EnemyBaseClass : MonoBehaviour {
         texture = Texture2D.blackTexture;
         resizeTextureOnLoad();
 
+        //TextOnScreen = GetComponent<Text>();
+        TextOnScreen.text = "Test";
         textToKill_NotTyped = textToKill;
         print("Start() has run...");
         print("TextOnScreen = " + TextOnScreen.text);
