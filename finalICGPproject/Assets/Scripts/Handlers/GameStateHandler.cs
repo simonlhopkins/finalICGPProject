@@ -44,6 +44,7 @@ public class GameStateHandler : MonoBehaviour {
         catch (System.Exception e)
         {
             print("Error message: " + e.StackTrace);
+            throw;
         }
 
         //print("UpdatePlayerTextState()");
