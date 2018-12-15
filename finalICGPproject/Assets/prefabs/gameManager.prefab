@@ -18,31 +18,33 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4381816012394030}
+  - component: {fileID: 224657856077916736}
   - component: {fileID: 114425898004957270}
   - component: {fileID: 114089672728262032}
   - component: {fileID: 114500988675100182}
   - component: {fileID: 114190349708137140}
+  - component: {fileID: 114087727596976524}
+  - component: {fileID: 222096428661525564}
   m_Layer: 0
   m_Name: gameManager
-  m_TagString: Untagged
+  m_TagString: gameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4381816012394030
-Transform:
+--- !u!114 &114087727596976524
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952645189136428}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6900814, y: 2.03768, z: 0.6492208}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b20958b0594948198557c4b3f7c2022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logContent: {fileID: 0}
+  logTextGO: {fileID: 1078166357396318, guid: 7700b54b671644067b9b2e5cb9689bdb, type: 2}
 --- !u!114 &114089672728262032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,8 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb9bf51ced914b849113fda897d72c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jSONEnemyHandler: {fileID: 1464325215612296, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b,
-    type: 2}
+  allEnemies: []
 --- !u!114 &114425898004957270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,7 +82,8 @@ MonoBehaviour:
   kh: {fileID: 0}
   currentEnemy: {fileID: 0}
   currentLevel: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 1356397971581330, guid: 536f7d38cf344474abf83eb28faebc49, type: 2}
+  debugArrayPopulated: 0
 --- !u!114 &114500988675100182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,5 +97,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   username: slimon_slopkins
   debugMode: 0
-  JSONEnemyHelperGO: {fileID: 1464325215612296, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b,
-    type: 2}
+  JSONEnemyHelperGO: {fileID: 0}
+  logHandler: {fileID: 0}
+  currentGameUserJSON:
+    ids:
+      ids: []
+      next_cursor: 0
+      next_cursor_str: 
+      previous_cursor: 0
+      previous_cursor_str: 
+    users:
+      items: []
+    lastAccess: 
+--- !u!222 &222096428661525564
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1952645189136428}
+  m_CullTransparentMesh: 0
+--- !u!224 &224657856077916736
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1952645189136428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.6492208}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3.6900814, y: 2.03768}
+  m_SizeDelta: {x: 100, y: 88.59}
+  m_Pivot: {x: 0.5, y: 0.5}

@@ -49,6 +49,7 @@ public class KeyboardHandler : MonoBehaviour {
     {
         if (Input.anyKeyDown)
         {
+
             string _input = Input.inputString;
             int _length = currentLettersTyped.Length;
             switch (_input)

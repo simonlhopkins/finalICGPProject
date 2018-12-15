@@ -11,7 +11,7 @@ public class GameStateHandler : MonoBehaviour {
     [SerializeField]
     public WaveClass currentWave;
     [SerializeField]
-    public Player player;
+    public GameObject player;
 
     public static GameStateHandler i;
 
@@ -27,14 +27,22 @@ public class GameStateHandler : MonoBehaviour {
     }
 
     void Start () {
+        print("start called in game state handler");
         kh = GetComponent<KeyboardHandler>();
-	}
+
+
+    }
 	
 	// Update is called once per frame
+
+    public bool debugArrayPopulated = false;
 	void Update () {
 
 
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
+            return;
+        }
+        if (!debugArrayPopulated) {
             return;
         }
         if (Input.anyKeyDown)
@@ -57,7 +65,7 @@ public class GameStateHandler : MonoBehaviour {
             }
             else
             {
-                kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
+                //kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
             }
         }
         catch (System.Exception e)
