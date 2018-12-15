@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114307310170074802}
   - component: {fileID: 114397731149801118}
   m_Layer: 5
-  m_Name: Button
+  m_Name: preexistingUser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assocUserName: 
+  inputField: {fileID: 0}
 --- !u!114 &114519543857934104
 MonoBehaviour:
   m_ObjectHideFlags: 1

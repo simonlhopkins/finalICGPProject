@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using JSONclasses;
 
+[System.Serializable]
 public class EnemyBaseClass : MonoBehaviour {
 
     #region Public fields

@@ -24,9 +24,25 @@ public class PlayButtonScript : MonoBehaviour {
 
 
     private void onButtonClick() {
+
         string _userName = gameManager.GetComponent<TwitterManagerScript>().username;
         if (_userName != "") {
-            gameManager.GetComponent<TwitterManagerScript>().onUserSelected(_userName);
+
+            if(gameManager.GetComponent<GameStateHandler>().player == null) {
+                gameManager.GetComponent<TwitterManagerScript>().onUserSelected(_userName);
+                return;
+            }
+            if (gameManager.GetComponent<GameStateHandler>().player.userName == _userName)
+            {
+
+                gameManager.GetComponent<LogHandler>().writeToLog("user already generated", Color.red);
+            }
+            else {
+                gameManager.GetComponent<TwitterManagerScript>().onUserSelected(_userName);
+            }
+
+
+
         }
 
     }

@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using JSONclasses;
 
+
 public class TwitterManagerScript : MonoBehaviour {
 
 
@@ -14,33 +15,46 @@ public class TwitterManagerScript : MonoBehaviour {
     private FriendUsers friendUsers;
     public GameObject JSONEnemyHelperGO;
     public LogHandler logHandler;
+    public GameUserJSON currentGameUserJSON;
+
 	// Use this for initialization
 	void Start () {
-
+    
         logHandler = GetComponent<LogHandler>();
         username = "";
 
     }
-	
-	// Update is called once per frame
+
+    // Update is called once per frame
+
+    bool sentText = false;
 	void Update () {
-        
-	}
+
+    }
 
     public void onUserSelected(string _userName) {
         logHandler.writeToLog(_userName + " is being loaded up...", Color.blue);
         userJSONFilePath = Path.Combine(Application.streamingAssetsPath, _userName + ".json");
+
+        //if we are not in debug mode, check if there is a JSON file already created, default to
+        //use the most recently made JSON file
         if (!debugMode)
         {
-            updateJSONFile(_userName);
+            //create and set the player to the precreated JSON data
+            if (File.Exists(userJSONFilePath)){
+                currentGameUserJSON = createGameUserJSON(userJSONFilePath);
+            }
+            //if not, then just make a new JSON file from loading
+            else {
+                updateJSONFile(_userName);
+            }
+
         }
+        //if it is in debug mode...
         else
         {
-
             if (File.Exists(userJSONFilePath)) {
-                string dataAsJson = File.ReadAllText(userJSONFilePath);
-                GameUserJSON gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
-                JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(gameUserJSON);
+                currentGameUserJSON = createGameUserJSON(userJSONFilePath);
             }
             else {
                 logHandler.writeToLog("Tried to access " + userJSONFilePath + " but it did not exsist", Color.red);
@@ -93,6 +107,7 @@ public class TwitterManagerScript : MonoBehaviour {
             logHandler.writeToLog("SUCCESS: " + friendUsers.items.Count + " USERS were fetched", Color.green);
 
             handleJSONFile(friendsIds, friendUsers);
+            
         
         }
         else{
@@ -106,22 +121,34 @@ public class TwitterManagerScript : MonoBehaviour {
             //create a new JSON file to edit and write the basic structure to it.
             string starterJSONText = "{\"ids\": {}, \"users\": {}, \"lastAccess\": {}}";
             byte[] starterJSONByteArray = System.Text.Encoding.ASCII.GetBytes(starterJSONText);
-            print("creating new file: " + userJSONFilePath);
             logHandler.writeToLog("creating new file: " + userJSONFilePath, Color.green);
             File.WriteAllBytes(userJSONFilePath, starterJSONByteArray);
 
         }
-        string dataAsJson = File.ReadAllText(userJSONFilePath);
-        GameUserJSON gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
-        gameUserJSON.ids = _friendsIds;
-
-        gameUserJSON.users = _friendUsers;
-        gameUserJSON.lastAccess = System.DateTime.Now.ToString();
+        currentGameUserJSON = createGameUserJSON(userJSONFilePath);
+        currentGameUserJSON.ids = _friendsIds;
+        currentGameUserJSON.users = _friendUsers;
+        currentGameUserJSON.lastAccess = System.DateTime.Now.ToString();
         //write back to the file path the modified gameUserJSON
-        File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(gameUserJSON));
+        File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(currentGameUserJSON));
+
+    }
+
+    private GameUserJSON createGameUserJSON(string _userJSONFilePath) {
+
+        string dataAsJson = File.ReadAllText(_userJSONFilePath);
+        GameUserJSON _gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
+        Player newPlayer = new Player {
+            userName = username,
+            gameUserJSON = _gameUserJSON,
+            followerCount = _gameUserJSON.ids.ids.Count
+        };
 
 
+        JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(_gameUserJSON);
+        GetComponent<GameStateHandler>().player = newPlayer;
+        return _gameUserJSON;
 
-        JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(gameUserJSON);
     }
 }
+

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - gameManager
+  - inputField
+  - JSONEnemyHandler
   layers:
   - Default
   - TransparentFX

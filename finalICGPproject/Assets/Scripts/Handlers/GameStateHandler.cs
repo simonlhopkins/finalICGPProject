@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JSONclasses;
 
 public class GameStateHandler : MonoBehaviour {
 
@@ -9,18 +10,34 @@ public class GameStateHandler : MonoBehaviour {
     public LevelClass currentLevel;
     [SerializeField]
     public WaveClass currentWave;
-    public GameObject player; 
+    [SerializeField]
+    public Player player;
 
-    
+    public static GameStateHandler i;
 
-	// Use this for initialization
-	void Start () {
-        kh = new KeyboardHandler();
+    void Awake()
+    {
+        if (!i)
+        {
+            i = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
+
+    void Start () {
+        kh = GetComponent<KeyboardHandler>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.anyKeyDown)
+
+
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
+            return;
+        }
+        if (Input.anyKeyDown)
         {
             UpdatePlayerTextState();
         }
@@ -28,8 +45,10 @@ public class GameStateHandler : MonoBehaviour {
 
     private void UpdatePlayerTextState()
     {
+
         var enemyControl = currentEnemy.GetComponent<EnemyBaseClass>() as EnemyBaseClass;
         //TODO: May account for backspace. Check to be certain. 
+
         try
         {
             if (enemyControl.UpdateTextToKillTypedText(kh.CurrentLettersTyped))
@@ -43,6 +62,7 @@ public class GameStateHandler : MonoBehaviour {
         }
         catch (System.Exception e)
         {
+            print(kh.CurrentLettersTyped);
             print("Error message: " + e.StackTrace);
         }
 
