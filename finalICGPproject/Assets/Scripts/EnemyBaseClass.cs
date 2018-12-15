@@ -91,6 +91,9 @@ public class EnemyBaseClass : MonoBehaviour {
         texture = Texture2D.blackTexture;
         resizeTextureOnLoad();
 
+        TextOnScreen = transform.gameObject.AddComponent<Text>() as Text;
+        print(TextOnScreen.text);
+
         TextOnScreen.supportRichText = true;
         TextOnScreen.text = textToKill;
         textToKill_NotTyped = textToKill;

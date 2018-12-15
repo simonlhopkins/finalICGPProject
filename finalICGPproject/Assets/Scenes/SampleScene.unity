@@ -286,6 +286,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114135277283848464, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b,
+        type: 2}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1326787954}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
   m_IsPrefabAsset: 0
@@ -379,6 +384,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1326787954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1952645189136428, guid: b9d543e7395d1420193e084ddea39d73,
+    type: 2}
+  m_PrefabInternal: {fileID: 500272732}
 --- !u!1 &1653500779
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +547,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114393718211848634, guid: 5532011e898e34b05b84657d80c131ad,
+        type: 2}
+      propertyPath: TextOnScreen
+      value: 
+      objectReference: {fileID: 2078115038}
+    - target: {fileID: 114393718211848634, guid: 5532011e898e34b05b84657d80c131ad,
+        type: 2}
+      propertyPath: textToKill
+      value: Potato
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5532011e898e34b05b84657d80c131ad, type: 2}
