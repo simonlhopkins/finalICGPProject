@@ -22,6 +22,9 @@ public class LogHandler : MonoBehaviour {
     }
 
     public void writeToLog(string message, Color color) {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "startScene") {
+            return;
+        }
         print(message);
         GameObject newLogText = Instantiate(logTextGO, logContent.transform, false);
         newLogText.GetComponent<Text>().text = message;

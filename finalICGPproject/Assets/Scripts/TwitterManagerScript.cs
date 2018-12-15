@@ -27,13 +27,12 @@ public class TwitterManagerScript : MonoBehaviour {
 
     // Update is called once per frame
 
-    bool sentText = false;
 	void Update () {
 
     }
 
     public void onUserSelected(string _userName) {
-        logHandler.writeToLog(_userName + " is being loaded up...", Color.blue);
+        JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON); logHandler.writeToLog(_userName + " is being loaded up...", Color.blue);
         userJSONFilePath = Path.Combine(Application.streamingAssetsPath, _userName + ".json");
 
         //if we are not in debug mode, check if there is a JSON file already created, default to
@@ -43,6 +42,7 @@ public class TwitterManagerScript : MonoBehaviour {
             //create and set the player to the precreated JSON data
             if (File.Exists(userJSONFilePath)){
                 currentGameUserJSON = createGameUserJSON(userJSONFilePath);
+                JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON);
             }
             //if not, then just make a new JSON file from loading
             else {
@@ -55,6 +55,7 @@ public class TwitterManagerScript : MonoBehaviour {
         {
             if (File.Exists(userJSONFilePath)) {
                 currentGameUserJSON = createGameUserJSON(userJSONFilePath);
+                JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON);
             }
             else {
                 logHandler.writeToLog("Tried to access " + userJSONFilePath + " but it did not exsist", Color.red);
@@ -129,8 +130,9 @@ public class TwitterManagerScript : MonoBehaviour {
         currentGameUserJSON.ids = _friendsIds;
         currentGameUserJSON.users = _friendUsers;
         currentGameUserJSON.lastAccess = System.DateTime.Now.ToString();
+        JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON);
         //write back to the file path the modified gameUserJSON
-        File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(currentGameUserJSON));
+
 
     }
 
@@ -138,15 +140,12 @@ public class TwitterManagerScript : MonoBehaviour {
 
         string dataAsJson = File.ReadAllText(_userJSONFilePath);
         GameUserJSON _gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
-        Player newPlayer = new Player {
-            userName = username,
-            gameUserJSON = _gameUserJSON,
-            followerCount = _gameUserJSON.ids.ids.Count
-        };
+        Player playerData = GetComponent<GameStateHandler>().player.GetComponent<Player>();
+        playerData.userName = username;
+        playerData.gameUserJSON = _gameUserJSON;
+        playerData.followerCount = _gameUserJSON.ids.ids.Count;
 
-
-        JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(_gameUserJSON);
-        GetComponent<GameStateHandler>().player = newPlayer;
+        File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(_gameUserJSON));
         return _gameUserJSON;
 
     }

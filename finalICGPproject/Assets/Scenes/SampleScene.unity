@@ -290,7 +290,7 @@ Prefab:
         type: 2}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1326787954}
+      objectReference: {fileID: 1871182119}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b, type: 2}
   m_IsPrefabAsset: 0
@@ -384,11 +384,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1326787954 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1952645189136428, guid: b9d543e7395d1420193e084ddea39d73,
-    type: 2}
-  m_PrefabInternal: {fileID: 500272732}
 --- !u!1 &1653500779
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +556,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5532011e898e34b05b84657d80c131ad, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1871182119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1952645189136428, guid: b9d543e7395d1420193e084ddea39d73,
+    type: 2}
+  m_PrefabInternal: {fileID: 500272732}
 --- !u!1 &1894626588
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 1894626589}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
