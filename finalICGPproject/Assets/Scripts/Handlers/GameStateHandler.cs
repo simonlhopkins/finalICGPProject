@@ -64,6 +64,7 @@ public class GameStateHandler : MonoBehaviour {
         {
             print(kh.CurrentLettersTyped);
             print("Error message: " + e.StackTrace);
+            throw;
         }
 
         //print("UpdatePlayerTextState()");

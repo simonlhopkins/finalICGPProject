@@ -54,6 +54,7 @@ public class KeyboardHandler : MonoBehaviour {
             switch (_input)
             {
                 case "\b": //backspace
+                    if (_length == 0) break;
                     currentLettersTyped.Remove(_length - 1, 1);
                     _length = currentLettersTyped.Length;
                     lastLetterTyped = currentLettersTyped.ToString()[_length - 1];
