@@ -30,7 +30,7 @@ public class JSONEnemyHandler : MonoBehaviour {
 
 
     public void loadJSONDataToEnemies(GameUserJSON baseJSON){
-        print("loading in enemies to array...");
+        print("loading in "+ baseJSON.ids.ids.Count + "enemies to array...");
         
         for (int i = 0; i < baseJSON.ids.ids.Count; i++){
 

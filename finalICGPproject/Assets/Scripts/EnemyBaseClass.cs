@@ -91,12 +91,13 @@ public class EnemyBaseClass : MonoBehaviour {
         texture = Texture2D.blackTexture;
         resizeTextureOnLoad();
 
-        TextOnScreen.supportRichText = true;
-        TextOnScreen.text = textToKill;
         textToKill_NotTyped = textToKill;
-
         print("Start() has run...");
         print("TextOnScreen = " + TextOnScreen.text);
+
+
+
+
 
     }
 
@@ -104,6 +105,7 @@ public class EnemyBaseClass : MonoBehaviour {
 	// Update is called once per frame
 	void Update() 
     {
+
         TextOnScreen.transform.position = this.transform.position + Vector3.up * 35;
         TextOnScreen.text = StyleText(textToKill_Typed, textToKill_NotTyped);
 	}
