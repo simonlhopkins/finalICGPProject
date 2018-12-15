@@ -15,7 +15,8 @@ public class GameStateHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        kh = new KeyboardHandler();
+        //kh = new KeyboardHandler();
+        kh = GetComponent<KeyboardHandler>();
 	}
 	
 	// Update is called once per frame
