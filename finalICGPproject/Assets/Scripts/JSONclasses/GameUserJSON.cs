@@ -14,6 +14,7 @@ namespace JSONclasses
     {
         public FriendsIds ids;
         public FriendUsers users;
+        public string lastAccess;
 
 
     }
