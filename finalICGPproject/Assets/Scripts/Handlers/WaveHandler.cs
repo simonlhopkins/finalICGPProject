@@ -6,8 +6,12 @@ public class WaveHandler : MonoBehaviour {
 
 	// Use this for initialization
     private GameStateHandler gameStateHandler;
-    public GameObject jSONEnemyHandler;
-	void Start () {
+    public List<GameObject> allEnemies;
+   
+    public static WaveHandler i;
+
+
+    void Start () {
         gameStateHandler = GetComponent<GameStateHandler>();
         //THIS SHOUDLD EVENTUALLY BE CALLED IN THE GAME STATE HANDLER SCRIPT EVERY TIME A NEW WAVE SHOULD BE SPAWNED
 
@@ -15,24 +19,12 @@ public class WaveHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            spawnNewWave();
-            //print(gameStateHandler.currentWave.EnemiesInWave.Count);
-        }
+
 	}
 
     void spawnNewWave(){
         
-        WaveClass newWave = new WaveClass();
-        newWave.EnemiesInWave = new List<GameObject>();
-        for (int i = 0; i < 10; i++){
-            newWave.EnemiesInWave.Add(jSONEnemyHandler.GetComponent<JSONEnemyHandler>().allEnemies[i]);
-            newWave.EnemiesInWave[i].SetActive(true);
-        }
-
-        gameStateHandler.currentWave = newWave;
-        gameStateHandler.currentEnemy = newWave.EnemiesInWave[0];
-        //newWave.EnemiesInWave 
+       
 
         
     }

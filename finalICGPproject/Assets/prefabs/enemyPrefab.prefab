@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114393718211848634}
   - component: {fileID: 212674257653231552}
   - component: {fileID: 222603461662724674}
+  - component: {fileID: 114480878951628634}
   m_Layer: 0
   m_Name: enemyPrefab
   m_TagString: Untagged
@@ -30,6 +31,27 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &114393718211848634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649163542941300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36dd86e64093b4df6ab6307418ef8083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  username: 
+  screen_name: 
+  description: 
+  location: 
+  followers_count: 0
+  friends_count: 0
+  favourites_count: 0
+  TextOnScreen: {fileID: 0}
+  textToKill: 
+  texture: {fileID: 0}
+--- !u!114 &114480878951628634
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,6 +140,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.91, y: 0.33}
+  m_AnchoredPosition: {x: 250, y: 92}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -1,11 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JSONclasses;
 
-public class Player : MonoBehaviour
+[System.Serializable]
+public class Player
 {
+    [SerializeField]
     private int health;
+    [SerializeField]
     public readonly SpriteRenderer playerPhoto;
+    public GameUserJSON gameUserJSON;
+    [SerializeField]
+    public int followerCount;
+    public string userName;
+
+
 
     public int DealDamage(int damage)
     {

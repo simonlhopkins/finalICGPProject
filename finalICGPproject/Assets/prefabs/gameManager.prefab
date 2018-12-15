@@ -65,7 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb9bf51ced914b849113fda897d72c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jSONEnemyHandler: {fileID: 0}
+  jSONEnemyHandler: {fileID: 1464325215612296, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b,
+    type: 2}
 --- !u!114 &114425898004957270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,6 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907f9466537f747479f237caa9b2a15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kh: {fileID: 0}
+  currentEnemy: {fileID: 0}
+  currentLevel: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &114500988675100182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,9 +90,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1952645189136428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd581572173eb4636917d4a845a92259, type: 3}
+  m_Script: {fileID: 11500000, guid: 370e6fa4429754ab9b3db9ce30bcecba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   username: slimon_slopkins
-  debugMode: 1
-  JSONEnemyHelperGO: {fileID: 0}
+  debugMode: 0
+  JSONEnemyHelperGO: {fileID: 1464325215612296, guid: f4e2f2b1eb48c4119ad08669bf1b8e9b,
+    type: 2}

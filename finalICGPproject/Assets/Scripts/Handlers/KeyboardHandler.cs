@@ -39,6 +39,9 @@ public class KeyboardHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
+            return;
+        }
         UpdateCurrentLettersTyped();
     }
 
@@ -51,6 +54,7 @@ public class KeyboardHandler : MonoBehaviour {
             switch (_input)
             {
                 case "\b": //backspace
+                    if (_length == 0) break;
                     currentLettersTyped.Remove(_length - 1, 1);
                     _length = currentLettersTyped.Length;
                     lastLetterTyped = currentLettersTyped.ToString()[_length - 1];
@@ -69,6 +73,7 @@ public class KeyboardHandler : MonoBehaviour {
                     print("CurrentLettersTyped: " + currentLettersTyped.ToString());
                     break;
             }
+
         }
     }
 }

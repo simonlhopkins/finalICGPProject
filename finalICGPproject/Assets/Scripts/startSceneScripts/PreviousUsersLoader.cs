@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
+using JSONclasses;
 
 public class PreviousUsersLoader : MonoBehaviour {
 
@@ -13,9 +14,7 @@ public class PreviousUsersLoader : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         previousJSONFiles = Directory.GetFiles(Application.streamingAssetsPath, "*.json");
-        for(int i=0; i<previousJSONFiles.Length; i++) {
-            print(previousJSONFiles[i]);
-        }
+
         //buttonHeight = existingUserTextGO.GetComponent<Rect>().height;
         populateContentContainer();
     }
@@ -32,8 +31,25 @@ public class PreviousUsersLoader : MonoBehaviour {
 
         for(int i = 0; i< previousJSONFiles.Length; i++) {
             GameObject newExistingUser = Instantiate(existingUserTextGO, contentContainer.transform, false);
-            newExistingUser.GetComponentInChildren<Text>().text = Path.GetFileName(previousJSONFiles[i]);
+            string userName = Path.GetFileName(previousJSONFiles[i]).Replace(".json", "");
+            string lastAccessDate = File.GetLastAccessTime(previousJSONFiles[i]).ToString();
+
+            string dataAsJson = File.ReadAllText(previousJSONFiles[i]);
+            GameUserJSON gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
+
+            newExistingUser.GetComponent<PreviousUserButtonScript>().assocUserName = userName;
+            newExistingUser.GetComponentInChildren<Text>().text = userName + " - " + gameUserJSON.lastAccess;
 
         }
+    }
+
+
+
+    public void setPlayerUser(string user) {
+        print(user);
+    }
+
+    public void handleChooseFromScrollBar() {
+        print("scrollbar chosen");
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using JSONclasses;
 
+[System.Serializable]
 public class EnemyBaseClass : MonoBehaviour {
 
     #region Public fields
@@ -56,17 +57,18 @@ public class EnemyBaseClass : MonoBehaviour {
     /// <returns></returns>
     public bool UpdateTextToKillTypedText(string typedText)
     {
-        if(textToKill.StartsWith(typedText, false, null))
+        if (typedText.Length == 0) return false; // probably not needed?
+
+        if (textToKill.StartsWith(typedText, false, null))
         {
-            textToKill_Typed = typedText;
+            textToKill_Typed = typedText; //TODO: Out of bounds exception below?
             textToKill_NotTyped = textToKill.Substring(typedText.Length - 1);
             return true;
-        } else
-        {
-            textToKill_Typed = "";
-            textToKill_NotTyped = textToKill;
-            return false;
         }
+
+        textToKill_Typed = "";
+        textToKill_NotTyped = textToKill;
+        return false;
     }
 
     [SerializeField]
