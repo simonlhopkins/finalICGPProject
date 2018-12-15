@@ -15,11 +15,37 @@ public class GameStateHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        kh = GetComponent<KeyboardHandler>();
+        kh = new KeyboardHandler();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(Input.anyKeyDown)
+        {
+            UpdatePlayerTextState();
+        }
 	}
+
+    private void UpdatePlayerTextState()
+    {
+        var enemyControl = currentEnemy.GetComponent<EnemyBaseClass>() as EnemyBaseClass;
+        //TODO: May account for backspace. Check to be certain. 
+        try
+        {
+            if (enemyControl.UpdateTextToKillTypedText(kh.CurrentLettersTyped))
+            {
+
+            }
+            else
+            {
+                kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
+            }
+        }
+        catch (System.Exception e)
+        {
+            print("Error message: " + e.StackTrace);
+        }
+
+        //print("UpdatePlayerTextState()");
+    }
 }
