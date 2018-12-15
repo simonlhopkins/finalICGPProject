@@ -317,6 +317,11 @@ Prefab:
       propertyPath: jSONEnemyHandler
       value: 
       objectReference: {fileID: 1854417201}
+    - target: {fileID: 114500988675100182, guid: b9d543e7395d1420193e084ddea39d73,
+        type: 2}
+      propertyPath: debugMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9d543e7395d1420193e084ddea39d73, type: 2}
   m_IsPrefabAsset: 0

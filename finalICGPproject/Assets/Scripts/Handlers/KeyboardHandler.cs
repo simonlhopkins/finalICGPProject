@@ -55,6 +55,7 @@ public class KeyboardHandler : MonoBehaviour {
                     lastLetterTyped = _input.ToCharArray()[0];
                     break;
             }
+
         }
     }
 }
