@@ -68,9 +68,9 @@ MonoBehaviour:
     ids:
       ids: []
       next_cursor: 0
-      next_cursor_str: 
+      next_cursor_str: 0
       previous_cursor: 0
-      previous_cursor_str: 
+      previous_cursor_str: 0
     users:
       items: []
     lastAccess: 

@@ -27,6 +27,7 @@ public class GameStateHandler : MonoBehaviour {
     }
 
     void Start () {
+        print("start called in game state handler");
         kh = GetComponent<KeyboardHandler>();
 
 
@@ -64,7 +65,7 @@ public class GameStateHandler : MonoBehaviour {
             }
             else
             {
-                kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
+                //kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
             }
         }
         catch (System.Exception e)

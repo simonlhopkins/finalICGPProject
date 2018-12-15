@@ -50,4 +50,11 @@ public class Player : MonoBehaviour
     {
 
     }
+
+    public void clearContent() {
+        health = 0;
+        gameUserJSON = null;
+        followerCount = 0;
+        userName = "";
+}
 }

@@ -10,13 +10,15 @@ public class PreviousUsersLoader : MonoBehaviour {
     private string[] previousJSONFiles;
     public RectTransform contentContainer;
     public GameObject existingUserTextGO;
-    public float buttonHeight;
+    private GameObject gameManager;
 	// Use this for initialization
 	void Start () {
+        gameManager = GameObject.Find("gameManager");
         previousJSONFiles = Directory.GetFiles(Application.streamingAssetsPath, "*.json");
-
+        gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().clearContent();
         //buttonHeight = existingUserTextGO.GetComponent<Rect>().height;
         populateContentContainer();
+
     }
 	
 	// Update is called once per frame
