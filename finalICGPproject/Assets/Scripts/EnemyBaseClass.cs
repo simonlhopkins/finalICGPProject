@@ -59,9 +59,8 @@ public class EnemyBaseClass : MonoBehaviour {
     {
         //if (typedText.Length == 0) return false; // probably not needed?
 
-        if (textToKill.StartsWith(typedText, false, null))
+        if (textToKill.StartsWith(typedText, true, null))
         {
-
             textToKill_Typed = typedText; //TODO: Out of bounds exception below?
             textToKill_NotTyped = textToKill.Substring(typedText.Length);
             if (isDead())
@@ -70,7 +69,9 @@ public class EnemyBaseClass : MonoBehaviour {
                 // play animation
                 var _animator = GetComponentInChildren<Animator>();
                 _animator.SetTrigger("DoTextCorrectAnimation");
-                //Destroy(gameObject, 0.15f);
+                GameObject.Find("gameManager").GetComponent<WaveHandler>().resetCurrentEnemy(gameObject);
+
+                Destroy(gameObject, 0.15f);
             }
             return true;
         }

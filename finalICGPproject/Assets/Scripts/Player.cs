@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerY = -3.5f;
-
+        streak = 1;
         _frequency = frequency;
         trans = transform;
     }
@@ -62,6 +62,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
+            gameObject.SetActive(false);
+            return;
+        }
+
         movement();
     }
 

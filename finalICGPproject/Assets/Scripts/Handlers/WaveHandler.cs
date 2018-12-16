@@ -7,9 +7,6 @@ public class WaveHandler : MonoBehaviour {
 	// Use this for initialization
     private GameStateHandler gameStateHandler;
     public List<GameObject> allEnemies;
-   
-    public static WaveHandler i;
-
 
     void Start () {
         gameStateHandler = GetComponent<GameStateHandler>();
@@ -19,10 +16,77 @@ public class WaveHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
+            return;
+        }
+        handleCurrentWaveSpawning(2f, 5f);
 
-	}
+    }
 
-    void spawnNewWave(){
-        
+    //this should do a lot of checking and adding new constraints and such
+    public void spawnNewWave(){
+        if (allEnemies.Count == 0) {
+            print("no more followers to spawn in");
+            return;
+        }
+        for (int i = 0; i < 5; i++)
+        {
+
+            if(allEnemies[i] == null) {
+                break;
+            }
+            GameObject newEnemy = allEnemies[i];
+            //newEnemy.SetActive(true);
+            newEnemy.hideFlags = 0;
+            GetComponent<GameStateHandler>().currentWave.Add(allEnemies[i]);
+        }
+    }
+
+    private float elapsedTime = 0;
+    private float timeToNextSpawn = 0;
+    public void handleCurrentWaveSpawning(float lowerBounds, float upperBounds) {
+        if(gameStateHandler.currentWave.Count== 0) {
+            spawnNewWave();
+            elapsedTime = 0;
+            timeToNextSpawn = 0;
+        }
+
+        if (elapsedTime >= timeToNextSpawn) { 
+            for(int i=0; i<gameStateHandler.currentWave.Count; i++)
+            {
+                if (!gameStateHandler.currentWave[i].activeInHierarchy) {
+                    gameStateHandler.currentWave[i].SetActive(true);
+                    gameStateHandler.currentWave[i].transform.position = new Vector3(Random.Range(-5f, 5f), 4f, 0f);
+                    break;
+                }
+            }
+
+            timeToNextSpawn = Random.Range(lowerBounds, upperBounds);
+            elapsedTime = 0;
+        }
+
+
+        elapsedTime += Time.deltaTime;
+    
+    }
+
+    public void resetCurrentEnemy(GameObject enemyDestroyed) {
+
+
+        int indexOfDestroyedEnemy = gameStateHandler.currentWave.IndexOf(enemyDestroyed);
+        //this was the last enemey in the current enemy wave
+        if (gameStateHandler.currentWave.Count == 1)
+        {
+
+            gameStateHandler.currentWave.Remove(enemyDestroyed);
+            spawnNewWave();
+            return;
+        }
+
+        gameStateHandler.player.GetComponent<Player>().streak = 1;
+        gameStateHandler.currentEnemy = gameStateHandler.currentWave[(indexOfDestroyedEnemy + 1)% gameStateHandler.currentWave.Count];
+        gameStateHandler.currentWave.Remove(enemyDestroyed);
+        Destroy(enemyDestroyed);
+
     }
 }

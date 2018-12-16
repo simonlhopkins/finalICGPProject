@@ -36,16 +36,12 @@ public class JSONEnemyHandler : MonoBehaviour {
         }
 
         //make the fist wave of enemies
-
-        for(int i= 0; i<5; i++) {
-            gameManager.GetComponent<WaveHandler>().allEnemies[i].SetActive(true);
-            gameManager.GetComponent<WaveHandler>().allEnemies[i].hideFlags = 0;
-            gameManager.GetComponent<GameStateHandler>().currentWave.Add(gameManager.GetComponent<WaveHandler>().allEnemies[i]);
-        }
+        //this should be its own method in game wave handler
+        gameManager.GetComponent<WaveHandler>().spawnNewWave();
 
 
         gameManager.GetComponent<GameStateHandler>().currentEnemy = gameManager.GetComponent<GameStateHandler>().currentWave[0];
-
+        gameManager.GetComponent<GameStateHandler>().player.SetActive(true);
         UnityEngine.SceneManagement.SceneManager.LoadScene("simonTestScene");
     }
 

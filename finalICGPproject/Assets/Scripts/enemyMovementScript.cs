@@ -6,7 +6,8 @@ public class enemyMovementScript : MonoBehaviour {
 
     private GameObject player;
     private GameObject gameManager;
-    public float movementSpeedMod = 1f;
+    public float playerStreakSpeedMod = 1f;
+    public float baseSpeedModifier = 0.5f;
 
    	// Use this for initialization
 	void Start () {
@@ -17,7 +18,8 @@ public class enemyMovementScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (gameObject == gameManager.GetComponent<GameStateHandler>().currentEnemy) {
-            movementSpeedMod = player.GetComponent<Player>().streak;
+            //change player 
+            playerStreakSpeedMod = player.GetComponent<Player>().streak;
         }
         movement();
 	}
@@ -25,7 +27,7 @@ public class enemyMovementScript : MonoBehaviour {
 
     void movement() {
 
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime / movementSpeedMod);
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, baseSpeedModifier * Time.deltaTime);
 
     }
 }
