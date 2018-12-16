@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class WaveClass {
 
 
+    [SerializeField]
     public List<GameObject> EnemiesInWave{get; set;}
 
     public Difficulty difficulty;

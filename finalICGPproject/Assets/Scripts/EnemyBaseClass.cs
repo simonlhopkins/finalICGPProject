@@ -88,11 +88,13 @@ public class EnemyBaseClass : MonoBehaviour {
     //Initialization
     void Start()
     {
-        texture = Texture2D.blackTexture;
-        resizeTextureOnLoad();
+        if(texture == null) {
+            texture = Texture2D.blackTexture;
+        }
 
-        //TextOnScreen = GetComponent<Text>();
-        TextOnScreen.text = "Test";
+        resizeTextureOnLoad();
+        textToKill = username;
+        TextOnScreen = GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
         textToKill_NotTyped = textToKill;
         print("Start() has run...");
         print("TextOnScreen = " + TextOnScreen.text);
@@ -108,7 +110,7 @@ public class EnemyBaseClass : MonoBehaviour {
 	void Update() 
     {
 
-        TextOnScreen.transform.position = this.transform.position + Vector3.up * 35;
+
         TextOnScreen.text = StyleText(textToKill_Typed, textToKill_NotTyped);
 	}
 

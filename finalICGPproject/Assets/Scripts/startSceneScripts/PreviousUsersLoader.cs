@@ -27,10 +27,6 @@ public class PreviousUsersLoader : MonoBehaviour {
 	}
     private void populateContentContainer() {
 
-        Vector3 startPostion = new Vector3(-291f, 139, 0f);
-        int totalHeight =0;
-        float padding = 10f;
-
         for(int i = 0; i< previousJSONFiles.Length; i++) {
             GameObject newExistingUser = Instantiate(existingUserTextGO, contentContainer.transform, false);
             string userName = Path.GetFileName(previousJSONFiles[i]).Replace(".json", "");
