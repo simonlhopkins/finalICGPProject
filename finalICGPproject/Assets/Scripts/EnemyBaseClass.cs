@@ -61,6 +61,11 @@ public class EnemyBaseClass : MonoBehaviour {
 
         if (textToKill.StartsWith(typedText, false, null))
         {
+            if(textToKill.Equals(textToKill_Typed))
+            {
+                // play animation
+                Destroy(gameObject);
+            }
             textToKill_Typed = typedText; //TODO: Out of bounds exception below?
             textToKill_NotTyped = textToKill.Substring(typedText.Length);
             return true;

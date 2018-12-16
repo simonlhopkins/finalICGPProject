@@ -60,7 +60,9 @@ public class GameStateHandler : MonoBehaviour {
             }
             else
             {
-                kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
+                kh.ClearCurrentLettersTyped();
+                 //clear typed letters if it does not match the enemy text to kill
+                print("clearing typed letters");
             }
         }
         catch (System.Exception e)
