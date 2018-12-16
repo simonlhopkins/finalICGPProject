@@ -24,8 +24,5 @@ public class WaveHandler : MonoBehaviour {
 
     void spawnNewWave(){
         
-       
-
-        
     }
 }

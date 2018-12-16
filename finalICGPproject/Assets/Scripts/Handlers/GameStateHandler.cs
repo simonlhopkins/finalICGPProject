@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JSONclasses;
+using System;
 
 public class GameStateHandler : MonoBehaviour {
 
@@ -29,8 +30,7 @@ public class GameStateHandler : MonoBehaviour {
     void Start () {
         print("start called in game state handler");
         kh = GetComponent<KeyboardHandler>();
-
-
+        kh.TabPressed += OnTabPressed;
     }
 	
 	// Update is called once per frame
@@ -44,6 +44,11 @@ public class GameStateHandler : MonoBehaviour {
         if (Input.anyKeyDown) {
             UpdatePlayerTextState();
         }
+    }
+
+    public void OnTabPressed(object sender, EventArgs e)
+    {
+        print("Tab was registered in GameStateHandler");
     }
 
     private void UpdatePlayerTextState()

@@ -9,6 +9,17 @@ public class KeyboardHandler : MonoBehaviour {
     private StringBuilder currentLettersTyped = new StringBuilder(128);
     private char lastLetterTyped;
 
+    public event TabPressedEventHandler TabPressed;
+    public delegate void TabPressedEventHandler(object sender, EventArgs e);
+
+    protected virtual void OnTabPressed()
+    {
+        if(TabPressed != null)
+        {
+            TabPressed(this, EventArgs.Empty);
+        }
+    }
+
     public string LastLetterTyped
     {
         get
@@ -54,6 +65,9 @@ public class KeyboardHandler : MonoBehaviour {
             int _length = currentLettersTyped.Length;
             switch (_input)
             {
+                case "\t":
+                    OnTabPressed();
+                    break;
                 case "\b": //backspace
                     if (_length == 0) break;
                     currentLettersTyped.Remove(_length - 1, 1);
