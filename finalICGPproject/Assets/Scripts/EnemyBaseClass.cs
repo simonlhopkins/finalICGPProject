@@ -62,7 +62,7 @@ public class EnemyBaseClass : MonoBehaviour {
         if (textToKill.StartsWith(typedText, false, null))
         {
             textToKill_Typed = typedText; //TODO: Out of bounds exception below?
-            textToKill_NotTyped = textToKill.Substring(typedText.Length - 1);
+            textToKill_NotTyped = textToKill.Substring(typedText.Length);
             return true;
         }
 
