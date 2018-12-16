@@ -61,18 +61,22 @@ public class EnemyBaseClass : MonoBehaviour {
 
         if (textToKill.StartsWith(typedText, false, null))
         {
-            if(textToKill.Equals(textToKill_Typed))
+
+            textToKill_Typed = typedText; //TODO: Out of bounds exception below?
+            textToKill_NotTyped = textToKill.Substring(typedText.Length);
+            if (isDead())
             {
+                print("enemy dead");
                 // play animation
                 Destroy(gameObject);
             }
-            textToKill_Typed = typedText; //TODO: Out of bounds exception below?
-            textToKill_NotTyped = textToKill.Substring(typedText.Length);
             return true;
         }
-
+        var animator = GetComponentInChildren<Animator>();
+        animator.SetTrigger("DoTextWrongAnimation");
         textToKill_Typed = "";
         textToKill_NotTyped = textToKill;
+
         return false;
     }
 
@@ -192,6 +196,11 @@ public class EnemyBaseClass : MonoBehaviour {
         TextureScale.Bilinear(texture, 500, 500);
         Sprite newSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
         GetComponent<SpriteRenderer>().sprite = newSprite;
+    }
+
+    private bool isDead()
+    {
+        return textToKill.ToLower().Equals(textToKill_Typed.ToLower());
     }
 
     #endregion
