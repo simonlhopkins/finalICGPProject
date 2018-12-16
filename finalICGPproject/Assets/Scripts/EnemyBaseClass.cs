@@ -57,7 +57,7 @@ public class EnemyBaseClass : MonoBehaviour {
     /// <returns></returns>
     public bool UpdateTextToKillTypedText(string typedText)
     {
-        if (typedText.Length == 0) return false; // probably not needed?
+        //if (typedText.Length == 0) return false; // probably not needed?
 
         if (textToKill.StartsWith(typedText, false, null))
         {
@@ -115,21 +115,7 @@ public class EnemyBaseClass : MonoBehaviour {
 	}
 
 
-    /// <summary>
-    /// Updates the text to kill to show progress on screen. Does not take backspace into account. 
-    /// </summary>
-    /// <returns><c>true</c>, if the char typed was next in <c>textToKill_NotTyped</c>, <c>false</c> otherwise.</returns>
-    /// <param name="c">C.</param>
-    public bool UpdateTextToKillAsTyped(string c)
-    {
-        if (textToKill_NotTyped.StartsWith(c, false, null)) //compare text case-insensitive
-        {
-            textToKill_Typed += textToKill_NotTyped.Remove(0);
-            //textToKill = StyleText(textToKill_Typed, textToKill_NotTyped);
-            return true;
-        }
-        return false;
-    }
+   
 
     /// <summary>
     /// Deletes the last typed char.

@@ -56,10 +56,13 @@ public class GameStateHandler : MonoBehaviour {
         {
             if (enemyControl.UpdateTextToKillTypedText(kh.CurrentLettersTyped))
             {
-
+                player.GetComponent<Player>().streak += 1;
+                currentEnemy.GetComponent<enemyMovementScript>().movementSpeedMod = player.GetComponent<Player>().streak;
             }
             else
             {
+                player.GetComponent<Player>().streak = 0;
+                currentEnemy.GetComponent<enemyMovementScript>().movementSpeedMod = 1;
                 kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
             }
         }

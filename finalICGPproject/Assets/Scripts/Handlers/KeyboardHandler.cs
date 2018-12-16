@@ -58,7 +58,13 @@ public class KeyboardHandler : MonoBehaviour {
                     if (_length == 0) break;
                     currentLettersTyped.Remove(_length - 1, 1);
                     _length = currentLettersTyped.Length;
-                    lastLetterTyped = currentLettersTyped.ToString()[_length - 1];
+                    if (_length == 0) {
+                        lastLetterTyped = ' ';
+                    }
+                    else {
+                        lastLetterTyped = currentLettersTyped.ToString()[_length - 1];
+                    }
+
                     print("CurrentLettersTyped: " + currentLettersTyped.ToString());
                     break;
 

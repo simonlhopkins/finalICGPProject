@@ -17,6 +17,16 @@ public class Player : MonoBehaviour
 
     public float playerY;
 
+    public int streak;
+
+
+
+    private float amplitude = 8.0f;
+    public float frequency = 0.5f;
+    private float _frequency;
+    private float phase = 0.0f;
+    private Transform trans;
+
     public static Player i;
 
     void Awake()
@@ -45,6 +55,8 @@ public class Player : MonoBehaviour
     {
         playerY = -3.5f;
 
+        _frequency = frequency;
+        trans = transform;
     }
 
     // Update is called once per frame
@@ -52,19 +64,19 @@ public class Player : MonoBehaviour
     {
         movement();
     }
-    void movement() {
-        int totalKeysPressed = 0;
-        if (Input.anyKeyDown) {
-            totalKeysPressed += 1;
 
-        }
-        transform.position = new Vector3(Mathf.Sin(Time.time), playerY, 0f);
-    
+    void movement() {
+
+        transform.position = new Vector3(amplitude * Mathf.Sin(Time.time), playerY, 0f);
     }
+
+
+
+   
     public void clearContent() {
         health = 0;
         gameUserJSON = null;
         followerCount = 0;
         userName = "";
-}
+    }
 }
