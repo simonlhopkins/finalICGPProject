@@ -9,7 +9,7 @@ public class GameStateHandler : MonoBehaviour {
     public GameObject currentEnemy;
     public LevelClass currentLevel;
     [SerializeField]
-    public WaveClass currentWave;
+    public List<GameObject> currentWave;
     [SerializeField]
     public GameObject player;
 
