@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public int followerCount;
     public string userName;
 
+    public float playerY;
 
     public static Player i;
 
@@ -42,15 +43,24 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playerY = -3.5f;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        movement();
     }
+    void movement() {
+        int totalKeysPressed = 0;
+        if (Input.anyKeyDown) {
+            totalKeysPressed += 1;
 
+        }
+        transform.position = new Vector3(Mathf.Sin(Time.time), playerY, 0f);
+    
+    }
     public void clearContent() {
         health = 0;
         gameUserJSON = null;

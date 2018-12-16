@@ -25,8 +25,29 @@ public class JSONEnemyHandler : MonoBehaviour {
         }
         if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == imagesLoaded)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("simonTestScene");
+            loadMainLevel();
         }
+    }
+
+    void loadMainLevel() {
+
+        if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount < 5) {
+            gameManager.GetComponent<LogHandler>().writeToLog("Please pick a user following more than 5 people", Color.red);
+        }
+
+        //make the fist wave of enemies
+        List<GameObject> firstWave = new List<GameObject>();
+        for(int i= 0; i<5; i++) {
+            gameManager.GetComponent<WaveHandler>().allEnemies[i].SetActive(true);
+            gameManager.GetComponent<WaveHandler>().allEnemies[i].hideFlags = 0;
+            firstWave.Add(gameManager.GetComponent<WaveHandler>().allEnemies[i]);
+        }
+        WaveClass newWave = new WaveClass {
+            EnemiesInWave = firstWave,
+        };
+        gameManager.GetComponent<GameStateHandler>().currentEnemy = newWave.EnemiesInWave[0];
+        gameManager.GetComponent<GameStateHandler>().currentWave = newWave;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("simonTestScene");
     }
 
 

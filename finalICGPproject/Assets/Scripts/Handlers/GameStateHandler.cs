@@ -35,19 +35,11 @@ public class GameStateHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 
-    public bool debugArrayPopulated = false;
 	void Update () {
 
 
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
             return;
-        }
-        if (!debugArrayPopulated) {
-            return;
-        }
-        if (Input.anyKeyDown)
-        {
-            UpdatePlayerTextState();
         }
 	}
 
@@ -61,7 +53,7 @@ public class GameStateHandler : MonoBehaviour {
         {
             if (enemyControl.UpdateTextToKillTypedText(kh.CurrentLettersTyped))
             {
-
+                enemyControl.UpdateTextToKillAsTyped(kh.CurrentLettersTyped);
             }
             else
             {
