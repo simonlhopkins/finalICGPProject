@@ -41,7 +41,10 @@ public class GameStateHandler : MonoBehaviour {
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
             return;
         }
-	}
+        if (Input.anyKeyDown) {
+            UpdatePlayerTextState();
+        }
+    }
 
     private void UpdatePlayerTextState()
     {
@@ -53,11 +56,11 @@ public class GameStateHandler : MonoBehaviour {
         {
             if (enemyControl.UpdateTextToKillTypedText(kh.CurrentLettersTyped))
             {
-                enemyControl.UpdateTextToKillAsTyped(kh.CurrentLettersTyped);
+
             }
             else
             {
-                //kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
+                kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
             }
         }
         catch (System.Exception e)
