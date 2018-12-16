@@ -9,17 +9,6 @@ public class KeyboardHandler : MonoBehaviour {
     private StringBuilder currentLettersTyped = new StringBuilder(128);
     private char lastLetterTyped;
 
-    public event TabPressedEventHandler TabPressed;
-    public delegate void TabPressedEventHandler(object sender, EventArgs e);
-
-    protected virtual void OnTabPressed()
-    {
-        if(TabPressed != null)
-        {
-            TabPressed(this, EventArgs.Empty);
-        }
-    }
-
     public string LastLetterTyped
     {
         get
@@ -54,6 +43,17 @@ public class KeyboardHandler : MonoBehaviour {
             return;
         }
         UpdateCurrentLettersTyped();
+    }
+
+    public event TabPressedEventHandler TabPressed;
+    public delegate void TabPressedEventHandler(object sender, EventArgs e);
+
+    protected virtual void OnTabPressed()
+    {
+        if (TabPressed != null)
+        {
+            TabPressed(this, EventArgs.Empty);
+        }
     }
 
     private void UpdateCurrentLettersTyped()

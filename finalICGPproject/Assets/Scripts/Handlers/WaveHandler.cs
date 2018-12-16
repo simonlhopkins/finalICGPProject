@@ -13,7 +13,7 @@ public class WaveHandler : MonoBehaviour {
 
     void Start () {
         gameStateHandler = GetComponent<GameStateHandler>();
-        //THIS SHOUDLD EVENTUALLY BE CALLED IN THE GAME STATE HANDLER SCRIPT EVERY TIME A NEW WAVE SHOULD BE SPAWNED
+        // THIS SHOUDLD EVENTUALLY BE CALLED IN THE GAME STATE HANDLER SCRIPT EVERY TIME A NEW WAVE SHOULD BE SPAWNED
 
 	}
 	

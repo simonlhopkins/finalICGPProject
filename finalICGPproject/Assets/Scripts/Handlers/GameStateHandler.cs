@@ -30,7 +30,7 @@ public class GameStateHandler : MonoBehaviour {
     void Start () {
         print("start called in game state handler");
         kh = GetComponent<KeyboardHandler>();
-        kh.TabPressed += OnTabPressed;
+        kh.TabPressed += OnTabPressed; //Register the OnTabPressed delegate to the event
     }
 	
 	// Update is called once per frame
