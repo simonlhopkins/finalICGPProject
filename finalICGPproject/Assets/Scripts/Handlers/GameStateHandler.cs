@@ -10,7 +10,7 @@ public class GameStateHandler : MonoBehaviour {
     public GameObject currentEnemy;
     public LevelClass currentLevel;
     [SerializeField]
-    public WaveClass currentWave;
+    public List<GameObject> currentWave;
     [SerializeField]
     public GameObject player;
 
@@ -62,12 +62,10 @@ public class GameStateHandler : MonoBehaviour {
             if (enemyControl.UpdateTextToKillTypedText(kh.CurrentLettersTyped))
             {
                 player.GetComponent<Player>().streak += 1;
-                currentEnemy.GetComponent<enemyMovementScript>().movementSpeedMod = player.GetComponent<Player>().streak;
             }
             else
             {
-                player.GetComponent<Player>().streak = 0;
-                currentEnemy.GetComponent<enemyMovementScript>().movementSpeedMod = 1;
+                player.GetComponent<Player>().streak = 1;
                 kh.ClearCurrentLettersTyped(); //clear typed letters if it does not match the enemy text to kill
             }
         }

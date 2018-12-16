@@ -70,6 +70,7 @@ public class KeyboardHandler : MonoBehaviour {
                     break;
                 case "\b": //backspace
                     if (_length == 0) break;
+                    GetComponent<GameStateHandler>().player.GetComponent<Player>().streak -= 1;
                     currentLettersTyped.Remove(_length - 1, 1);
                     _length = currentLettersTyped.Length;
                     if (_length == 0) {
