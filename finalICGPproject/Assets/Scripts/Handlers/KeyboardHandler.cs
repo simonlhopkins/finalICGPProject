@@ -45,6 +45,17 @@ public class KeyboardHandler : MonoBehaviour {
         UpdateCurrentLettersTyped();
     }
 
+    public event TabPressedEventHandler TabPressed;
+    public delegate void TabPressedEventHandler(object sender, EventArgs e);
+
+    protected virtual void OnTabPressed()
+    {
+        if (TabPressed != null)
+        {
+            TabPressed(this, EventArgs.Empty);
+        }
+    }
+
     private void UpdateCurrentLettersTyped()
     {
         if (Input.anyKeyDown)
@@ -54,6 +65,9 @@ public class KeyboardHandler : MonoBehaviour {
             int _length = currentLettersTyped.Length;
             switch (_input)
             {
+                case "\t":
+                    OnTabPressed();
+                    break;
                 case "\b": //backspace
                     if (_length == 0) break;
                     GetComponent<GameStateHandler>().player.GetComponent<Player>().streak -= 1;

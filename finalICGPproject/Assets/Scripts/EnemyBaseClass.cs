@@ -70,7 +70,7 @@ public class EnemyBaseClass : MonoBehaviour {
                 // play animation
                 var _animator = GetComponentInChildren<Animator>();
                 _animator.SetTrigger("DoTextCorrectAnimation");
-                Destroy(gameObject, 0.15f);
+                //Destroy(gameObject, 0.15f);
             }
             return true;
         }
