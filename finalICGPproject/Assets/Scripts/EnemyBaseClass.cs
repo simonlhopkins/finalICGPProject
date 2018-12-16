@@ -101,19 +101,17 @@ public class EnemyBaseClass : MonoBehaviour {
     {
         if(texture == null) {
             texture = Texture2D.blackTexture;
+            texture.Resize(200, 200);
         }
 
-        resizeTextureOnLoad();
+
         textToKill = username;
         TextOnScreen = GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
         textToKill_NotTyped = textToKill;
+        resizeTextureOnLoad();
+
         print("Start() has run...");
         print("TextOnScreen = " + TextOnScreen.text);
-
-
-
-
-
     }
 
 	
@@ -181,9 +179,12 @@ public class EnemyBaseClass : MonoBehaviour {
     /// </summary>
     private void resizeTextureOnLoad()
     {
-        TextureScale.Bilinear(texture, 500, 500);
+
+        TextureScale.Bilinear(texture, 200, 200);
         Sprite newSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-        GetComponent<SpriteRenderer>().sprite = newSprite;
+        GetComponentInChildren<SpriteRenderer>().sprite = newSprite;
+        TextOnScreen.rectTransform.localPosition = new Vector3(0, -30, 0);
+
     }
 
     private bool isDead()

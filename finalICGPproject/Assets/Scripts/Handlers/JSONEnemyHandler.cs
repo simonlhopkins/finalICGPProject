@@ -43,6 +43,7 @@ public class JSONEnemyHandler : MonoBehaviour {
             gameManager.GetComponent<GameStateHandler>().currentWave.Add(gameManager.GetComponent<WaveHandler>().allEnemies[i]);
         }
 
+
         gameManager.GetComponent<GameStateHandler>().currentEnemy = gameManager.GetComponent<GameStateHandler>().currentWave[0];
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("simonTestScene");
@@ -50,19 +51,15 @@ public class JSONEnemyHandler : MonoBehaviour {
 
 
     public void loadJSONDataToEnemies(GameUserJSON baseJSON){
-        print("loading in "+ baseJSON.ids.ids.Count + "enemies to array...");
-        
-        for (int i = 0; i < baseJSON.ids.ids.Count; i++){
 
+        for (int i = 0; i < baseJSON.ids.ids.Count; i++){
+        
             GameObject newEnemyGO = Instantiate(enemy);
             newEnemyGO.SetActive(false);
             newEnemyGO.hideFlags = HideFlags.HideInHierarchy;
             StartCoroutine(fetchImageFromURL(baseJSON.users.items[i].profile_image_url.Replace("_normal",""),
                                              baseJSON.users.items[i], newEnemyGO));
             gameManager.GetComponent<WaveHandler>().allEnemies.Add(newEnemyGO);
-
-
-
         }
 
 
