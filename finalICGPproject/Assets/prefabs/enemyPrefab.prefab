@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 114629883394540588}
   - component: {fileID: 114233977135593588}
   - component: {fileID: 114015928836338132}
-  - component: {fileID: 111324889340226632}
-  - component: {fileID: 95859239747851094}
+  - component: {fileID: 111670211732617444}
+  - component: {fileID: 95904514776809250}
   m_Layer: 0
   m_Name: completedText
   m_TagString: Untagged
@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 4307541439522526}
   - component: {fileID: 114397842334684550}
   - component: {fileID: 212134523274582250}
+  - component: {fileID: 114101201520913644}
   m_Layer: 0
   m_Name: enemyPrefab
   m_TagString: Untagged
@@ -83,7 +84,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95859239747851094
+--- !u!95 &95904514776809250
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -101,7 +102,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &111324889340226632
+--- !u!111 &111670211732617444
 Animation:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,6 +129,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &114101201520913644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1874070518323424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15db9de943744742850bd4e2ec69a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeedMod: 1
 --- !u!114 &114143709054220134
 MonoBehaviour:
   m_ObjectHideFlags: 1

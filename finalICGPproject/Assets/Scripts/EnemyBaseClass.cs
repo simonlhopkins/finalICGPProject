@@ -68,15 +68,17 @@ public class EnemyBaseClass : MonoBehaviour {
             {
                 print("enemy dead");
                 // play animation
-                Destroy(gameObject);
+                var _animator = GetComponentInChildren<Animator>();
+                _animator.SetTrigger("DoTextCorrectAnimation");
+                Destroy(gameObject, 0.15f);
             }
             return true;
         }
+
         var animator = GetComponentInChildren<Animator>();
         animator.SetTrigger("DoTextWrongAnimation");
         textToKill_Typed = "";
         textToKill_NotTyped = textToKill;
-
         return false;
     }
 
