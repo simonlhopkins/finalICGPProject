@@ -92,7 +92,7 @@ public class TwitterManagerScript : MonoBehaviour {
             //once you have all of the ids you can pass them into another API call for users lookup
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             string followersIdsString = string.Join(", ", friendsIds.ids.ToArray());
-            print(followersIdsString);
+
             parameters["user_id"] = followersIdsString;
 
             StartCoroutine(Twity.Client.Get("users/lookup", parameters, getFollowerUsersCallback));
@@ -131,6 +131,7 @@ public class TwitterManagerScript : MonoBehaviour {
         currentGameUserJSON = createGameUserJSON(userJSONFilePath);
         currentGameUserJSON.ids = _friendsIds;
         currentGameUserJSON.users = _friendUsers;
+        GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount = _friendsIds.ids.Count;
         currentGameUserJSON.lastAccess = System.DateTime.Now.ToString();
         JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON);
         //write back to the file path the modified gameUserJSON
@@ -141,12 +142,15 @@ public class TwitterManagerScript : MonoBehaviour {
     private GameUserJSON createGameUserJSON(string _userJSONFilePath) {
 
         print("creating game user JSON");
+
         string dataAsJson = File.ReadAllText(_userJSONFilePath);
+        print(dataAsJson);
         GameUserJSON _gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
         Player playerData = GetComponent<GameStateHandler>().player.GetComponent<Player>();
         playerData.userName = username;
         playerData.gameUserJSON = _gameUserJSON;
-        playerData.followerCount = _gameUserJSON.ids.ids.Count;
+
+
 
         File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(_gameUserJSON));
         return _gameUserJSON;

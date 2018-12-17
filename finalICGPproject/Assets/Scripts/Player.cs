@@ -66,11 +66,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
-            gameObject.SetActive(false);
+
             return;
-        }
-        if (Input.anyKeyDown) {
-            GameObject.Find("gameManager").GetComponent<GameStateHandler>().currentEnemy.GetComponent<EnemyBaseClass>().isDead();
         }
         movement();
     }

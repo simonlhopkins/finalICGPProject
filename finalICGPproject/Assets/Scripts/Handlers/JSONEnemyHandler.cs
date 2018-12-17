@@ -96,6 +96,7 @@ public class JSONEnemyHandler : MonoBehaviour {
             targetEnemy.transform.SetParent(gameManager.transform);
             imagesLoaded += 1;
             gameManager.GetComponent<LogHandler>().writeToLog("loading in image: " + imagesLoaded, Color.green);
+            print("follower count: " + gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount);
             if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == imagesLoaded)
             {
                 imagesLoaded = 0;

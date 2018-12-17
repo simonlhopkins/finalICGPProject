@@ -121,7 +121,21 @@ public class EnemyBaseClass : MonoBehaviour {
 
 
         TextOnScreen.text = StyleText(textToKill_Typed, textToKill_NotTyped);
-	}
+
+        if(GameObject.Find("gameManager").GetComponent<GameStateHandler>().currentEnemy == this.gameObject) {
+            transform.Find("currentEnemyArrow").gameObject.SetActive(true);
+            foreach(SpriteRenderer r in GetComponentsInChildren<SpriteRenderer>()) {
+                r.sortingOrder = 1;
+            }
+        }
+        else {
+            transform.Find("currentEnemyArrow").gameObject.SetActive(false);
+            foreach (SpriteRenderer r in GetComponentsInChildren<SpriteRenderer>())
+            {
+                r.sortingOrder = 0;
+            }
+        }
+    }
 
 
    
@@ -168,7 +182,7 @@ public class EnemyBaseClass : MonoBehaviour {
     /// <summary>
     /// Deletes all typed text.
     /// </summary>
-    private void deleteAllTypedText()
+    public void deleteAllTypedText()
     {
         textToKill_NotTyped = textToKill_Typed + textToKill_NotTyped;
         textToKill_Typed = "";
@@ -182,7 +196,7 @@ public class EnemyBaseClass : MonoBehaviour {
 
         TextureScale.Bilinear(texture, 200, 200);
         Sprite newSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-        GetComponentInChildren<SpriteRenderer>().sprite = newSprite;
+        transform.Find("spriteImage").GetComponent<SpriteRenderer>().sprite = newSprite;
         TextOnScreen.rectTransform.localPosition = new Vector3(0, -30, 0);
 
     }

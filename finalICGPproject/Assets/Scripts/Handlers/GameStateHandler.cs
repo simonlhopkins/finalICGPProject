@@ -14,13 +14,13 @@ public class GameStateHandler : MonoBehaviour {
     [SerializeField]
     public GameObject player;
 
-    public static GameStateHandler i;
+    public static GameStateHandler g;
 
     void Awake()
     {
-        if (!i)
+        if (!g)
         {
-            i = this;
+            g = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -31,6 +31,7 @@ public class GameStateHandler : MonoBehaviour {
         print("start called in game state handler");
         kh = GetComponent<KeyboardHandler>();
         kh.TabPressed += OnTabPressed; //Register the OnTabPressed delegate to the event
+        player = GameObject.FindWithTag("Player");
     }
 	
 	// Update is called once per frame
@@ -49,6 +50,26 @@ public class GameStateHandler : MonoBehaviour {
     public void OnTabPressed(object sender, EventArgs e)
     {
         print("Tab was registered in GameStateHandler");
+
+        switchCurrentEnemy();
+
+    }
+
+    private void switchCurrentEnemy() {
+        int currentEnemyIndex = currentWave.IndexOf(currentEnemy);
+        currentEnemy.GetComponent<EnemyBaseClass>().deleteAllTypedText();
+        for (int i=1; i< currentWave.Count; i++) {
+            print((currentEnemyIndex + i) % currentWave.Count);
+            if(currentWave[(currentEnemyIndex + i) % currentWave.Count].activeInHierarchy) {
+                currentEnemy = currentWave[(currentEnemyIndex + i) % currentWave.Count];
+                player.GetComponent<Player>().streak = 0;
+                kh.ClearCurrentLettersTyped();
+
+            }
+        }
+
+
+
     }
 
     private void UpdatePlayerTextState()
