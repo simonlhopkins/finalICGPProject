@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JSONclasses;
+using System.Linq;
 
 public class JSONEnemyHandler : MonoBehaviour {
 
@@ -12,21 +13,37 @@ public class JSONEnemyHandler : MonoBehaviour {
     public int imagesLoaded = 0;
 
 
+    public static JSONEnemyHandler j;
+
+    void Awake()
+    {
+        if (!j)
+        {
+            j = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
+
+
+
+
     void Start () {
         gameManager = GameObject.FindWithTag("gameManager");
 
     }
 
     // Update is called once per frame
+
+
+
     void Update () {
         if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == 0)
         {
             return;
         }
-        if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == imagesLoaded)
-        {
-            loadMainLevel();
-        }
+
     }
 
     void loadMainLevel() {
@@ -47,6 +64,7 @@ public class JSONEnemyHandler : MonoBehaviour {
 
 
     public void loadJSONDataToEnemies(GameUserJSON baseJSON){
+
 
         for (int i = 0; i < baseJSON.ids.ids.Count; i++){
         
@@ -78,7 +96,25 @@ public class JSONEnemyHandler : MonoBehaviour {
             targetEnemy.transform.SetParent(gameManager.transform);
             imagesLoaded += 1;
             gameManager.GetComponent<LogHandler>().writeToLog("loading in image: " + imagesLoaded, Color.green);
+            if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == imagesLoaded)
+            {
+                imagesLoaded = 0;
+                gameManager.GetComponent<WaveHandler>().allEnemies.Sort(CompareScreenName);
+                loadMainLevel();
+            }
         }
     }
-   
+    private int CompareScreenName(GameObject a, GameObject b)
+    {
+        float distance_a = a.GetComponent<EnemyBaseClass>().screen_name.Length;
+        float distance_b = b.GetComponent<EnemyBaseClass>().screen_name.Length;
+        if (distance_a >= distance_b)
+        {
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
+    }
 }

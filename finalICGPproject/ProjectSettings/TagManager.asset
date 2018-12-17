@@ -8,6 +8,8 @@ TagManager:
   - inputField
   - JSONEnemyHandler
   - Canvas
+  - logContentRect
+  - enemy
   layers:
   - Default
   - TransparentFX

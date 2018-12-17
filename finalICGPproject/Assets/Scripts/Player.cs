@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
     public int streak;
 
+    private GameObject gm;
+
 
 
     private float amplitude = 8.0f;
@@ -27,13 +29,13 @@ public class Player : MonoBehaviour
     private float phase = 0.0f;
     private Transform trans;
 
-    public static Player i;
+    public static Player p;
 
     void Awake()
     {
-        if (!i)
+        if (!p)
         {
-            i = this;
+            p = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
         streak = 1;
         _frequency = frequency;
         trans = transform;
+        gm = GameObject.FindWithTag("gameManager");
     }
 
     // Update is called once per frame
@@ -81,7 +84,7 @@ public class Player : MonoBehaviour
 
    
     public void clearContent() {
-        health = 0;
+        health = 3;
         gameUserJSON = null;
         followerCount = 0;
         userName = "";
@@ -89,6 +92,37 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject.Find("gameManager").GetComponent<WaveHandler>().resetCurrentEnemyOnKill(collision.gameObject);
+
+        if(collision.gameObject.tag != "enemy")
+        {
+            return;
+        }
+        gm.GetComponent<WaveHandler>().resetCurrentEnemyOnKill(collision.gameObject);
+        health -= 1;
+        if (health <= 0) {
+
+
+            for(int i =0; i< gm.GetComponent<WaveHandler>().allEnemies.Count; i++) {
+                Destroy(gm.GetComponent<WaveHandler>().allEnemies[i]);
+            }
+            for (int i = 0; i < gm.GetComponent<GameStateHandler>().currentWave.Count; i++)
+            {
+                Destroy(gm.GetComponent<GameStateHandler>().currentWave[i]);
+            }
+            gm.GetComponent<WaveHandler>().allEnemies.Clear();
+            gm.GetComponent<GameStateHandler>().currentWave.Clear();
+            gm.GetComponent<TwitterManagerScript>().currentGameUserJSON = null;
+            gameUserJSON = null;
+            followerCount = 0;
+
+
+            Invoke("switchSceneToStart", 0.5f);
+
+        }
+
+    }
+
+    void switchSceneToStart() {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("startScene");
     }
 }

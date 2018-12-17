@@ -38,6 +38,7 @@ public class PlayButtonScript : MonoBehaviour {
                 gameManager.GetComponent<LogHandler>().writeToLog("user already generated", Color.red);
             }
             else {
+                print("on user selected with: " + _userName);
                 gameManager.GetComponent<TwitterManagerScript>().onUserSelected(_userName);
             }
 

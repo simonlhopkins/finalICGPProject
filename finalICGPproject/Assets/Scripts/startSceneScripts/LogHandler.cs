@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LogHandler : MonoBehaviour {
 
 
-    public RectTransform logContent;
+    private RectTransform logContent;
     public GameObject logTextGO;
     // Use this for initialization
     void Start () {
@@ -18,7 +18,9 @@ public class LogHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-       
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
+            logContent = GameObject.FindWithTag("logContentRect").GetComponent<RectTransform>();
+        }
     }
 
     public void writeToLog(string message, Color color) {

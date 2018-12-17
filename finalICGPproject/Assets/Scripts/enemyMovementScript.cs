@@ -15,10 +15,9 @@ public class enemyMovementScript : MonoBehaviour {
         gameManager = GameObject.Find("gameManager");
         player = GameObject.Find("gameManager").GetComponent<GameStateHandler>().player;
         enemyBaseClass = GetComponent<EnemyBaseClass>();
-        //baseSpeed = Mathf.Log10(enemyBaseClass.screen_name.Length);
-        baseSpeed = 5f;
+        baseSpeed = 3f;
 
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

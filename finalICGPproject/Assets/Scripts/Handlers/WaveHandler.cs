@@ -29,7 +29,7 @@ public class WaveHandler : MonoBehaviour {
     //this should do a lot of checking and adding new constraints and such
     public void spawnNewWave(){
         if (allEnemies.Count == 0) {
-            print("no more followers to spawn in");
+
             return;
         }
         for (int i = 0; i < numberOfEnemiesInWave; i++)
