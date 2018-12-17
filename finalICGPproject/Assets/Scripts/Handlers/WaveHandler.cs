@@ -45,23 +45,19 @@ public class WaveHandler : MonoBehaviour {
             allEnemies.Remove(allEnemies[i]);
         }
         GetComponent<GameStateHandler>().currentEnemy = GetComponent<GameStateHandler>().currentWave[0];
-        print("current enemey set to first item of new wave: "+ GetComponent<GameStateHandler>().currentEnemy.name);
     }
 
     private float elapsedTime = 0;
     private float timeToNextSpawn = 0;
     //this function assumes that there is always enemies in thescene
     public void handleCurrentWaveSpawning(float lowerBounds, float upperBounds) {
-        print("elapsed time: " + elapsedTime);
-        print("time to next spawn: " + timeToNextSpawn);
+      
         if (elapsedTime >= timeToNextSpawn) {
-            print("checking if you should spawn a new enemy");
 
             for(int i=0; i<gameStateHandler.currentWave.Count; i++)
             {
 
                 if (!gameStateHandler.currentWave[i].activeInHierarchy) {
-                    print("make new enemy active");
                     gameStateHandler.currentWave[i].SetActive(true);
                     gameStateHandler.currentWave[i].transform.position = new Vector3(Random.Range(-5f, 5f), 4f, 0f);
                     break;
@@ -81,8 +77,9 @@ public class WaveHandler : MonoBehaviour {
 
 
         int indexOfDestroyedEnemy = gameStateHandler.currentWave.IndexOf(enemyDestroyed);
-        gameStateHandler.player.GetComponent<Player>().streak = 1;
+        gameStateHandler.player.GetComponent<Player>().streak = 0;
         gameStateHandler.currentWave.Remove(enemyDestroyed);
+        Destroy(enemyDestroyed, 0.15f);
         //this was the last enemey in the current enemy wave, spawn a new wave
         if (gameStateHandler.currentWave.Count == 0)
         {
@@ -93,6 +90,7 @@ public class WaveHandler : MonoBehaviour {
 
 
         gameStateHandler.currentEnemy = gameStateHandler.currentWave[indexOfDestroyedEnemy % gameStateHandler.currentWave.Count];
+
         //gameStateHandler.currentWave.Remove(enemyDestroyed);
 
 

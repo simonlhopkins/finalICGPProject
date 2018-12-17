@@ -54,6 +54,9 @@ public class GameStateHandler : MonoBehaviour {
     private void UpdatePlayerTextState()
     {
 
+        if (kh.CurrentLettersTyped.Length == 0) {
+            return;
+        }
         var enemyControl = currentEnemy.GetComponent<EnemyBaseClass>() as EnemyBaseClass;
         //TODO: May account for backspace. Check to be certain. 
 

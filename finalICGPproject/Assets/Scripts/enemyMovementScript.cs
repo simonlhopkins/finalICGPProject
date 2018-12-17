@@ -7,12 +7,17 @@ public class enemyMovementScript : MonoBehaviour {
     private GameObject player;
     private GameObject gameManager;
     public float playerStreakSpeedMod = 1f;
-    public float baseSpeedModifier = 0.5f;
+    public float baseSpeed;
+    public EnemyBaseClass enemyBaseClass;
 
    	// Use this for initialization
 	void Start () {
         gameManager = GameObject.Find("gameManager");
         player = GameObject.Find("gameManager").GetComponent<GameStateHandler>().player;
+        enemyBaseClass = GetComponent<EnemyBaseClass>();
+        //baseSpeed = Mathf.Log10(enemyBaseClass.screen_name.Length);
+        baseSpeed = 5f;
+
 	}
 	
 	// Update is called once per frame
@@ -20,14 +25,17 @@ public class enemyMovementScript : MonoBehaviour {
         if (gameObject == gameManager.GetComponent<GameStateHandler>().currentEnemy) {
             //change player 
             playerStreakSpeedMod = player.GetComponent<Player>().streak;
+            //esure you never get a divide by 0
+            playerStreakSpeedMod = baseSpeed - Mathf.Clamp(0.1f * playerStreakSpeedMod, 0, baseSpeed);
         }
+
         movement();
 	}
 
 
     void movement() {
 
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, baseSpeedModifier * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, playerStreakSpeedMod * Time.deltaTime);
 
     }
 }

@@ -86,4 +86,9 @@ public class Player : MonoBehaviour
         followerCount = 0;
         userName = "";
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject.Find("gameManager").GetComponent<WaveHandler>().resetCurrentEnemyOnKill(collision.gameObject);
+    }
 }

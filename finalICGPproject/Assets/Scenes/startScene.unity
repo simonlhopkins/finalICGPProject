@@ -2102,12 +2102,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 1356397971581330, guid: 536f7d38cf344474abf83eb28faebc49, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114461466005275220, guid: 536f7d38cf344474abf83eb28faebc49, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536f7d38cf344474abf83eb28faebc49, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1653163451 stripped
@@ -2115,6 +2110,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1356397971581330, guid: 536f7d38cf344474abf83eb28faebc49,
     type: 2}
   m_PrefabInternal: {fileID: 1653163450}
+--- !u!50 &1653163452
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1653163451}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1703475459 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1952645189136428, guid: b9d543e7395d1420193e084ddea39d73,
