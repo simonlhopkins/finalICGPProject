@@ -19,6 +19,13 @@ public class WaveHandler : MonoBehaviour {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
             return;
         }
+        if (Input.GetKeyDown(KeyCode.D)) {
+            print("removing all...");
+            for(int i =0; i<gameStateHandler.currentWave.Count; i++) {
+                print(gameStateHandler.currentWave[i].GetComponent<EnemyBaseClass>().username);
+            }
+            gameStateHandler.currentWave.Clear();
+        }
         handleCurrentWaveSpawning(2f, 5f);
 
     }

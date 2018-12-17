@@ -188,7 +188,7 @@ public class EnemyBaseClass : MonoBehaviour {
 
     }
 
-    private bool isDead()
+    public bool isDead()
     {
         return textToKill.ToLower().Equals(textToKill_Typed.ToLower());
     }

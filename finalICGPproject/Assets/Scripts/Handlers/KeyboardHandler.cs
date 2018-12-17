@@ -92,7 +92,6 @@ public class KeyboardHandler : MonoBehaviour {
                 default:
                     currentLettersTyped.Append(_input);
                     lastLetterTyped = _input.ToCharArray()[0];
-                    print("CurrentLettersTyped: " + currentLettersTyped.ToString());
                     break;
             }
 

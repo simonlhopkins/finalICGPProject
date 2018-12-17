@@ -66,7 +66,9 @@ public class Player : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-
+        if (Input.anyKeyDown) {
+            GameObject.Find("gameManager").GetComponent<GameStateHandler>().currentEnemy.GetComponent<EnemyBaseClass>().isDead();
+        }
         movement();
     }
 
