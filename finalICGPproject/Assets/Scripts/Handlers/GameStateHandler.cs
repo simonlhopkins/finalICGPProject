@@ -62,6 +62,10 @@ public class GameStateHandler : MonoBehaviour {
             if (enemyControl.UpdateTextToKillTypedText(kh.CurrentLettersTyped))
             {
                 player.GetComponent<Player>().streak += 1;
+                if(enemyControl.TextToKill.ToLower().Equals(kh.CurrentLettersTyped.ToLower()))
+                {
+                    kh.ClearCurrentLettersTyped(); // clear letters typed if enemy is killed.
+                }
             }
             else
             {
