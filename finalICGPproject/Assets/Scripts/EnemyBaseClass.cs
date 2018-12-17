@@ -69,9 +69,10 @@ public class EnemyBaseClass : MonoBehaviour {
                 // play animation
                 var _animator = GetComponentInChildren<Animator>();
                 _animator.SetTrigger("DoTextCorrectAnimation");
-                GameObject.Find("gameManager").GetComponent<WaveHandler>().resetCurrentEnemy(gameObject);
+                GameObject.Find("gameManager").GetComponent<WaveHandler>().resetCurrentEnemyOnKill(gameObject);
 
                 Destroy(gameObject, 0.15f);
+                //Destroy(gameObject, 0f);
             }
             return true;
         }
@@ -106,13 +107,10 @@ public class EnemyBaseClass : MonoBehaviour {
         }
 
 
-        textToKill = username;
+        textToKill = screen_name;
         TextOnScreen = GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
         textToKill_NotTyped = textToKill;
         resizeTextureOnLoad();
-
-        print("Start() has run...");
-        print("TextOnScreen = " + TextOnScreen.text);
     }
 
 	

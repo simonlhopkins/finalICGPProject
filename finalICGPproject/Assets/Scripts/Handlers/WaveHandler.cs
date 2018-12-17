@@ -8,6 +8,8 @@ public class WaveHandler : MonoBehaviour {
     private GameStateHandler gameStateHandler;
     public List<GameObject> allEnemies;
 
+    public int numberOfEnemiesInWave = 5;
+
     void Start () {
         gameStateHandler = GetComponent<GameStateHandler>();
         // THIS SHOUDLD EVENTUALLY BE CALLED IN THE GAME STATE HANDLER SCRIPT EVERY TIME A NEW WAVE SHOULD BE SPAWNED
@@ -19,13 +21,7 @@ public class WaveHandler : MonoBehaviour {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "startScene") {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.D)) {
-            print("removing all...");
-            for(int i =0; i<gameStateHandler.currentWave.Count; i++) {
-                print(gameStateHandler.currentWave[i].GetComponent<EnemyBaseClass>().username);
-            }
-            gameStateHandler.currentWave.Clear();
-        }
+
         handleCurrentWaveSpawning(2f, 5f);
 
     }
@@ -36,32 +32,36 @@ public class WaveHandler : MonoBehaviour {
             print("no more followers to spawn in");
             return;
         }
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < numberOfEnemiesInWave; i++)
         {
 
             if(allEnemies[i] == null) {
+                print("reached a null part of the all enemies list");
                 break;
             }
-            GameObject newEnemy = allEnemies[i];
-            //newEnemy.SetActive(true);
-            newEnemy.hideFlags = 0;
+            allEnemies[i].hideFlags = 0;
             GetComponent<GameStateHandler>().currentWave.Add(allEnemies[i]);
+
+            allEnemies.Remove(allEnemies[i]);
         }
+        GetComponent<GameStateHandler>().currentEnemy = GetComponent<GameStateHandler>().currentWave[0];
+        print("current enemey set to first item of new wave: "+ GetComponent<GameStateHandler>().currentEnemy.name);
     }
 
     private float elapsedTime = 0;
     private float timeToNextSpawn = 0;
+    //this function assumes that there is always enemies in thescene
     public void handleCurrentWaveSpawning(float lowerBounds, float upperBounds) {
-        if(gameStateHandler.currentWave.Count== 0) {
-            spawnNewWave();
-            elapsedTime = 0;
-            timeToNextSpawn = 0;
-        }
+        print("elapsed time: " + elapsedTime);
+        print("time to next spawn: " + timeToNextSpawn);
+        if (elapsedTime >= timeToNextSpawn) {
+            print("checking if you should spawn a new enemy");
 
-        if (elapsedTime >= timeToNextSpawn) { 
             for(int i=0; i<gameStateHandler.currentWave.Count; i++)
             {
+
                 if (!gameStateHandler.currentWave[i].activeInHierarchy) {
+                    print("make new enemy active");
                     gameStateHandler.currentWave[i].SetActive(true);
                     gameStateHandler.currentWave[i].transform.position = new Vector3(Random.Range(-5f, 5f), 4f, 0f);
                     break;
@@ -77,23 +77,24 @@ public class WaveHandler : MonoBehaviour {
     
     }
 
-    public void resetCurrentEnemy(GameObject enemyDestroyed) {
+    public void resetCurrentEnemyOnKill(GameObject enemyDestroyed) {
 
 
         int indexOfDestroyedEnemy = gameStateHandler.currentWave.IndexOf(enemyDestroyed);
-        //this was the last enemey in the current enemy wave
-        if (gameStateHandler.currentWave.Count == 1)
+        gameStateHandler.player.GetComponent<Player>().streak = 1;
+        gameStateHandler.currentWave.Remove(enemyDestroyed);
+        //this was the last enemey in the current enemy wave, spawn a new wave
+        if (gameStateHandler.currentWave.Count == 0)
         {
-
-            gameStateHandler.currentWave.Remove(enemyDestroyed);
+            timeToNextSpawn = 0;
             spawnNewWave();
             return;
         }
 
-        gameStateHandler.player.GetComponent<Player>().streak = 1;
-        gameStateHandler.currentEnemy = gameStateHandler.currentWave[(indexOfDestroyedEnemy + 1)% gameStateHandler.currentWave.Count];
-        gameStateHandler.currentWave.Remove(enemyDestroyed);
-        Destroy(enemyDestroyed);
+
+        gameStateHandler.currentEnemy = gameStateHandler.currentWave[indexOfDestroyedEnemy % gameStateHandler.currentWave.Count];
+        //gameStateHandler.currentWave.Remove(enemyDestroyed);
+
 
     }
 }
