@@ -16,7 +16,7 @@ public class enemyMovementScript : MonoBehaviour {
         gameManager = GameObject.Find("gameManager");
         player = GameObject.Find("gameManager").GetComponent<GameStateHandler>().player;
         enemyBaseClass = GetComponent<EnemyBaseClass>();
-        baseSpeed = 0.1f;
+        baseSpeed = 0.6f;
         actualSpeed = baseSpeed;
 
     }
@@ -27,7 +27,7 @@ public class enemyMovementScript : MonoBehaviour {
             //change player 
             playerStreakSpeedMod = player.GetComponent<Player>().streak;
             //esure you never get a divide by 0
-            actualSpeed = baseSpeed - Mathf.Clamp(0.1f * (playerStreakSpeedMod-1), 0, baseSpeed);
+            actualSpeed = baseSpeed - Mathf.Clamp(0.03f * (playerStreakSpeedMod-1), 0, baseSpeed);
         }
         else {
             actualSpeed = baseSpeed;
