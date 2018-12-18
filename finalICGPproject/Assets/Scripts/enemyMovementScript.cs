@@ -16,7 +16,7 @@ public class enemyMovementScript : MonoBehaviour {
         gameManager = GameObject.Find("gameManager");
         player = GameObject.Find("gameManager").GetComponent<GameStateHandler>().player;
         enemyBaseClass = GetComponent<EnemyBaseClass>();
-        baseSpeed = 0.6f;
+        baseSpeed = 0.8f;
         actualSpeed = baseSpeed;
 
     }

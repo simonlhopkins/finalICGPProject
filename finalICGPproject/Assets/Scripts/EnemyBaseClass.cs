@@ -79,8 +79,10 @@ public class EnemyBaseClass : MonoBehaviour {
             return true;
         }
 
+        if (animController != null) {
+            animController.SetTrigger("DoTextWrongAnimation");
+        }
 
-        animController.SetTrigger("DoTextWrongAnimation");
         textToKill_Typed = "";
         textToKill_NotTyped = textToKill;
         return false;

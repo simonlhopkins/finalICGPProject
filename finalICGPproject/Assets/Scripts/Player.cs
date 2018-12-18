@@ -108,6 +108,7 @@ public class Player : MonoBehaviour
             }
             gm.GetComponent<WaveHandler>().allEnemies.Clear();
             gm.GetComponent<GameStateHandler>().currentWave.Clear();
+            gm.GetComponent<GameStateHandler>().waveNumber = 0;
             gm.GetComponent<TwitterManagerScript>().currentGameUserJSON = null;
             gameUserJSON = null;
             followerCount = 0;
@@ -120,6 +121,7 @@ public class Player : MonoBehaviour
     }
 
     void switchSceneToStart() {
+        transform.position = new Vector3(10.0f, 0, 0);
         UnityEngine.SceneManagement.SceneManager.LoadScene("startScene");
     }
 }
