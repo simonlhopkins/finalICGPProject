@@ -14,6 +14,9 @@ public class GameStateHandler : MonoBehaviour {
     [SerializeField]
     public GameObject player;
 
+    public int score;
+    public int waveNumber;
+
     public static GameStateHandler g;
 
     void Awake()
@@ -59,7 +62,6 @@ public class GameStateHandler : MonoBehaviour {
         int currentEnemyIndex = currentWave.IndexOf(currentEnemy);
         currentEnemy.GetComponent<EnemyBaseClass>().deleteAllTypedText();
         for (int i=1; i< currentWave.Count; i++) {
-            print((currentEnemyIndex + i) % currentWave.Count);
             if(currentWave[(currentEnemyIndex + i) % currentWave.Count].activeInHierarchy) {
                 currentEnemy = currentWave[(currentEnemyIndex + i) % currentWave.Count];
                 player.GetComponent<Player>().streak = 0;
@@ -88,6 +90,7 @@ public class GameStateHandler : MonoBehaviour {
                 player.GetComponent<Player>().streak += 1;
                 if(enemyControl.TextToKill.ToLower().Equals(kh.CurrentLettersTyped.ToLower()))
                 {
+                    score += 1;
                     kh.ClearCurrentLettersTyped(); // clear letters typed if enemy is killed.
                 }
             }

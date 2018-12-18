@@ -9,7 +9,7 @@ public class JSONEnemyHandler : MonoBehaviour {
     // Use this for initialization
 
     public GameObject enemy;
-    public GameObject gameManager;
+    //public GameObject gameManager;
     public int imagesLoaded = 0;
 
 
@@ -30,7 +30,7 @@ public class JSONEnemyHandler : MonoBehaviour {
 
 
     void Start () {
-        gameManager = GameObject.FindWithTag("gameManager");
+        //gameManager = GameObject.FindWithTag("gameManager");
 
     }
 
@@ -39,7 +39,7 @@ public class JSONEnemyHandler : MonoBehaviour {
 
 
     void Update () {
-        if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == 0)
+        if (GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == 0)
         {
             return;
         }
@@ -48,17 +48,17 @@ public class JSONEnemyHandler : MonoBehaviour {
 
     void loadMainLevel() {
 
-        if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount < 5) {
-            gameManager.GetComponent<LogHandler>().writeToLog("Please pick a user following more than 5 people", Color.red);
+        if (GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount < 5) {
+            GetComponent<LogHandler>().writeToLog("Please pick a user following more than 5 people", Color.red);
         }
 
         //make the fist wave of enemies
         //this should be its own method in game wave handler
-        gameManager.GetComponent<WaveHandler>().spawnNewWave();
+        GetComponent<WaveHandler>().spawnNewWave();
 
 
-        gameManager.GetComponent<GameStateHandler>().currentEnemy = gameManager.GetComponent<GameStateHandler>().currentWave[0];
-        gameManager.GetComponent<GameStateHandler>().player.SetActive(true);
+        GetComponent<GameStateHandler>().currentEnemy = GetComponent<GameStateHandler>().currentWave[0];
+        GetComponent<GameStateHandler>().player.SetActive(true);
         UnityEngine.SceneManagement.SceneManager.LoadScene("simonTestScene");
     }
 
@@ -69,11 +69,12 @@ public class JSONEnemyHandler : MonoBehaviour {
         for (int i = 0; i < baseJSON.ids.ids.Count; i++){
         
             GameObject newEnemyGO = Instantiate(enemy);
+            newEnemyGO.transform.position = new Vector3(0, 0, 0);
             newEnemyGO.SetActive(false);
             newEnemyGO.hideFlags = HideFlags.HideInHierarchy;
             StartCoroutine(fetchImageFromURL(baseJSON.users.items[i].profile_image_url.Replace("_normal",""),
                                              baseJSON.users.items[i], newEnemyGO));
-            gameManager.GetComponent<WaveHandler>().allEnemies.Add(newEnemyGO);
+            GetComponent<WaveHandler>().allEnemies.Add(newEnemyGO);
         }
 
 
@@ -93,14 +94,13 @@ public class JSONEnemyHandler : MonoBehaviour {
             //Texture2D scaledTexture = TextureScaler.scaled(tex, 100, 100);
             targetEnemy.GetComponent<EnemyBaseClass>().Texture = tex;
             targetEnemy.GetComponent<EnemyBaseClass>().setStringVariables(userInfo);
-            targetEnemy.transform.SetParent(gameManager.transform);
+            targetEnemy.transform.SetParent(transform);
             imagesLoaded += 1;
-            gameManager.GetComponent<LogHandler>().writeToLog("loading in image: " + imagesLoaded, Color.green);
-            print("follower count: " + gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount);
-            if (gameManager.GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == imagesLoaded)
+            print("follower count: " + GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount);
+            if (GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount == imagesLoaded)
             {
                 imagesLoaded = 0;
-                gameManager.GetComponent<WaveHandler>().allEnemies.Sort(CompareScreenName);
+                GetComponent<WaveHandler>().allEnemies.Sort(CompareScreenName);
                 loadMainLevel();
             }
         }

@@ -16,7 +16,7 @@ public class enemyMovementScript : MonoBehaviour {
         gameManager = GameObject.Find("gameManager");
         player = GameObject.Find("gameManager").GetComponent<GameStateHandler>().player;
         enemyBaseClass = GetComponent<EnemyBaseClass>();
-        baseSpeed = 2f;
+        baseSpeed = 0.1f;
         actualSpeed = baseSpeed;
 
     }
@@ -34,12 +34,19 @@ public class enemyMovementScript : MonoBehaviour {
         }
 
         movement();
+
 	}
 
 
     void movement() {
 
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, actualSpeed * Time.deltaTime);
-
+        if(gameManager.GetComponent<GameStateHandler>().currentEnemy== this.gameObject)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1.0f);
+        }
+        else {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
+        }
     }
 }

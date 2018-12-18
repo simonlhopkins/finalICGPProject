@@ -17,7 +17,8 @@ public class EnemyBaseClass : MonoBehaviour {
     public int friends_count;
     public int favourites_count;
     public bool IsFocused { get; set; }
-    
+
+    Animator animController;
 
     #endregion
 
@@ -68,8 +69,8 @@ public class EnemyBaseClass : MonoBehaviour {
             {
                 print("enemy dead");
                 // play animation
-                var _animator = GetComponentInChildren<Animator>();
-                _animator.SetTrigger("DoTextCorrectAnimation");
+
+                animController.SetTrigger("DoTextCorrectAnimation");
                 GameObject.Find("gameManager").GetComponent<WaveHandler>().resetCurrentEnemyOnKill(gameObject);
 
 
@@ -78,8 +79,8 @@ public class EnemyBaseClass : MonoBehaviour {
             return true;
         }
 
-        var animator = GetComponentInChildren<Animator>();
-        animator.SetTrigger("DoTextWrongAnimation");
+
+        animController.SetTrigger("DoTextWrongAnimation");
         textToKill_Typed = "";
         textToKill_NotTyped = textToKill;
         return false;
@@ -110,13 +111,14 @@ public class EnemyBaseClass : MonoBehaviour {
 
         textToKill = screen_name;
         TextOnScreen = GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
+        animController = transform.Find("Canvas").GetComponentInChildren<Animator>();
         textToKill_NotTyped = textToKill;
         resizeTextureOnLoad();
     }
 
-	
-	// Update is called once per frame
-	void Update() 
+    
+    // Update is called once per frame
+    void Update() 
     {
 
 
@@ -127,6 +129,7 @@ public class EnemyBaseClass : MonoBehaviour {
             foreach(SpriteRenderer r in GetComponentsInChildren<SpriteRenderer>()) {
                 r.sortingOrder = 1;
             }
+
         }
         else {
             transform.Find("currentEnemyArrow").gameObject.SetActive(false);

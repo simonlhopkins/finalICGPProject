@@ -15,6 +15,6 @@ public class playerStreakUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        uiText.text = player.GetComponent<Player>().streak.ToString();
+        uiText.text = "Streak: " + player.GetComponent<Player>().streak.ToString();
 	}
 }

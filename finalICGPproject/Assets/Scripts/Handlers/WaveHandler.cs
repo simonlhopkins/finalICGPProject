@@ -32,6 +32,7 @@ public class WaveHandler : MonoBehaviour {
 
             return;
         }
+        GameObject.FindWithTag("gameManager").GetComponent<GameStateHandler>().waveNumber += 1;
         for (int i = 0; i < numberOfEnemiesInWave; i++)
         {
 
@@ -50,6 +51,8 @@ public class WaveHandler : MonoBehaviour {
     private float elapsedTime = 0;
     private float timeToNextSpawn = 0;
     //this function assumes that there is always enemies in thescene
+
+    
     public void handleCurrentWaveSpawning(float lowerBounds, float upperBounds) {
       
         if (elapsedTime >= timeToNextSpawn) {

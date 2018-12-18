@@ -13,14 +13,12 @@ public class TwitterManagerScript : MonoBehaviour {
     private string userJSONFilePath;
     private FriendsIds friendsIds;
     private FriendUsers friendUsers;
-    public GameObject JSONEnemyHelperGO;
     public LogHandler logHandler;
     public GameUserJSON currentGameUserJSON;
 
 	// Use this for initialization
 	void Start () {
 
-        JSONEnemyHelperGO = GameObject.FindWithTag("JSONEnemyHandler");
         logHandler = GetComponent<LogHandler>();
         username = "";
 
@@ -43,8 +41,10 @@ public class TwitterManagerScript : MonoBehaviour {
         {
             //create and set the player to the precreated JSON data
             if (File.Exists(userJSONFilePath)){
-                currentGameUserJSON = createGameUserJSON(userJSONFilePath);
-                JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON);
+                string dataAsJson = File.ReadAllText(userJSONFilePath);
+                GameUserJSON _gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
+                handleJSONFile(_gameUserJSON.ids, _gameUserJSON.users);
+
             }
             //if not, then just make a new JSON file from loading
             else {
@@ -56,8 +56,9 @@ public class TwitterManagerScript : MonoBehaviour {
         else
         {
             if (File.Exists(userJSONFilePath)) {
-                currentGameUserJSON = createGameUserJSON(userJSONFilePath);
-                JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON);
+                string dataAsJson = File.ReadAllText(userJSONFilePath);
+                GameUserJSON _gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
+                handleJSONFile(_gameUserJSON.ids, _gameUserJSON.users);
             }
             else {
                 logHandler.writeToLog("Tried to access " + userJSONFilePath + " but it did not exsist", Color.red);
@@ -120,40 +121,36 @@ public class TwitterManagerScript : MonoBehaviour {
     }
 
     void handleJSONFile(FriendsIds _friendsIds, FriendUsers _friendUsers){
+        bool userExisted = true;
         if (!File.Exists(userJSONFilePath)){
             //create a new JSON file to edit and write the basic structure to it.
             string starterJSONText = "{\"ids\": {}, \"users\": {}, \"lastAccess\": {}}";
             byte[] starterJSONByteArray = System.Text.Encoding.ASCII.GetBytes(starterJSONText);
             logHandler.writeToLog("creating new file: " + userJSONFilePath, Color.green);
             File.WriteAllBytes(userJSONFilePath, starterJSONByteArray);
+            userExisted = false;
 
         }
-        currentGameUserJSON = createGameUserJSON(userJSONFilePath);
-        currentGameUserJSON.ids = _friendsIds;
-        currentGameUserJSON.users = _friendUsers;
+
+        string dataAsJson = File.ReadAllText(userJSONFilePath);
+        GameUserJSON _gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
+
+        _gameUserJSON.ids = _friendsIds;
+        _gameUserJSON.users = _friendUsers;
+
+        if (!userExisted) {
+            _gameUserJSON.lastAccess = System.DateTime.Now.ToString();
+        }
+
+
+        currentGameUserJSON = _gameUserJSON;
+        GetComponent<GameStateHandler>().player.GetComponent<Player>().gameUserJSON = currentGameUserJSON;
         GetComponent<GameStateHandler>().player.GetComponent<Player>().followerCount = _friendsIds.ids.Count;
-        currentGameUserJSON.lastAccess = System.DateTime.Now.ToString();
-        JSONEnemyHelperGO.GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON);
+        dataAsJson = JsonUtility.ToJson(_gameUserJSON);
+        File.WriteAllText(userJSONFilePath, dataAsJson);
+        GetComponent<JSONEnemyHandler>().loadJSONDataToEnemies(currentGameUserJSON);
         //write back to the file path the modified gameUserJSON
 
-
-    }
-
-    private GameUserJSON createGameUserJSON(string _userJSONFilePath) {
-
-        print("creating game user JSON");
-
-        string dataAsJson = File.ReadAllText(_userJSONFilePath);
-        print(dataAsJson);
-        GameUserJSON _gameUserJSON = JsonUtility.FromJson<GameUserJSON>(dataAsJson);
-        Player playerData = GetComponent<GameStateHandler>().player.GetComponent<Player>();
-        playerData.userName = username;
-        playerData.gameUserJSON = _gameUserJSON;
-
-
-
-        File.WriteAllText(userJSONFilePath, JsonUtility.ToJson(_gameUserJSON));
-        return _gameUserJSON;
 
     }
 }

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114233977135593588}
   - component: {fileID: 114015928836338132}
   - component: {fileID: 95904514776809250}
+  - component: {fileID: 114657292632237268}
   m_Layer: 0
   m_Name: completedText
   m_TagString: Untagged
@@ -251,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStreakSpeedMod: 1
   baseSpeed: 0
+  actualSpeed: 0
   enemyBaseClass: {fileID: 0}
 --- !u!114 &114143709054220134
 MonoBehaviour:
@@ -346,6 +348,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: <color=green><b></b></color><color=red>Hello World</color>
+--- !u!114 &114657292632237268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678645611191514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114929320300641772
 MonoBehaviour:
   m_ObjectHideFlags: 1
