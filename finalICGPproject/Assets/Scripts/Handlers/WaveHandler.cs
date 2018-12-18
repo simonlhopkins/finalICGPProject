@@ -22,7 +22,7 @@ public class WaveHandler : MonoBehaviour {
             return;
         }
 
-        handleCurrentWaveSpawning(2f, 5f);
+        handleCurrentWaveSpawning(1.5f, 3f);
 
     }
 
