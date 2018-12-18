@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class waveNumberUI : MonoBehaviour {
+public class playerLivesUI : MonoBehaviour {
 
     // Use this for initialization
     GameObject gm;
@@ -18,6 +18,6 @@ public class waveNumberUI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        uiText.text = "Wave Number: " + gm.GetComponent<GameStateHandler>().waveNumber.ToString();
+        uiText.text = "Lives: " + gm.GetComponent<GameStateHandler>().player.GetComponent<Player>().GetHealth();
     }
 }
